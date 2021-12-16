@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nextwave/components/app_bar.dart';
-import 'package:nextwave/components/elevated_button.dart';
-import 'package:nextwave/components/text_field.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
