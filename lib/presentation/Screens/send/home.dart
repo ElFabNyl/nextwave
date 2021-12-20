@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:nextwave/components/app_bar.dart';
 
 class Home extends StatefulWidget {
@@ -12,16 +13,17 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBarWidget(
           showArrow: false, showBell: true, showBadge: true, badgeContent: '4'),
-      body: Column(
-        children: [
-          const SizedBox(
-            height: 50.0,
-          ),
-         
-        ],
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
+        child: Column(
+          children: [
+          ],
+        ),
       ),
     );
   }
 }
+
