@@ -2,6 +2,7 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
+  final bool isShoppingBag;
   final bool showArrow;
   final bool showBell;
   final bool showBadge;
@@ -11,6 +12,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
 
   const AppBarWidget({
     Key? key,
+    required this.isShoppingBag,
     required this.showArrow,
     required this.showBell,
     required this.showBadge,
@@ -55,7 +57,12 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                         Icons.notifications,
                         color: Colors.white,
                       )
-                    : null,
+                    : isShoppingBag
+                        ? const Icon(
+                            Icons.shopping_bag,
+                            color: Colors.white,
+                          )
+                        : null,
                 badgeColor: const Color(0xffFFB7B7),
               )),
         )
