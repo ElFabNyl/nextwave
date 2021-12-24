@@ -37,6 +37,7 @@ dependencies:
   flutter_bloc: ^8.0.0
   badges: ^2.0.2
   rate_my_app: ^1.1.1+1
+  font_awesome_flutter: ^9.2.0
 
 dev_dependencies:
   flutter_test:

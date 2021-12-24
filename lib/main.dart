@@ -11,7 +11,6 @@ void main() {
 
 class MyApp extends StatefulWidget {
   final AppRouter appRouter;
-
   const MyApp({
     Key? key,
     required this.appRouter,
@@ -23,7 +22,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final RateMyApp _rateMyApp = RateMyApp(
-    preferencesPrefix: ' com.example.nextwave',
+    preferencesPrefix: 'rateMyApp_',
     minDays: 1,
     minLaunches: 3,
     remindLaunches: 5,
@@ -33,7 +32,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    print(_rateMyApp.shouldOpenDialog);
+    
     _rateMyApp.init().then((_) {
       if (_rateMyApp.shouldOpenDialog) {
         _rateMyApp.showStarRateDialog(
