@@ -28,10 +28,10 @@ class _IndexState extends State<Index> {
       backgroundColor: Colors.white,
       appBar: const AppBarWidget(
         showArrow: false,
-        showBell: false,
+        showBell: true,
         showBadge: true,
         badgeContent: '4',
-        isShoppingBag: true,
+        isShoppingBag: false,
       ),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Colors.white,

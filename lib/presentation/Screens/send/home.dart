@@ -22,7 +22,9 @@ class _HomeState extends State<Home> {
               imagePath: 'assets/images/moto.png'),
           const SizedBox(height: 40.0),
           HomeModuleCard(
-              action: () {},
+              action: () {
+                Navigator.of(context).pushNamed('/package_description');
+              },
               imagePath: 'assets/images/send.png',
               moduleName: 'Peer to peer Sending',
               moduleDescription: 'Send a parcel anywhere at any time'),

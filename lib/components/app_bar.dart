@@ -44,27 +44,28 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15.0),
           child: IconButton(
-              onPressed: notificationBellFunction,
-              icon: Badge(
-                badgeContent: showBadge
-                    ? Text(
-                        badgeContent.toString(),
-                        style: const TextStyle(color: Color(0xff510707)),
-                      )
-                    : null,
-                child: showBell
-                    ? const Icon(
-                        Icons.notifications,
-                        color: Colors.white,
-                      )
-                    : isShoppingBag
+            onPressed: notificationBellFunction,
+            icon: showBadge
+                ? Badge(
+                    badgeContent: Text(
+                      badgeContent.toString(),
+                      style: const TextStyle(color: Color(0xff510707)),
+                    ),
+                    child: showBell
                         ? const Icon(
-                            Icons.shopping_bag,
+                            Icons.notifications,
                             color: Colors.white,
                           )
-                        : null,
-                badgeColor: const Color(0xffFFB7B7),
-              )),
+                        : isShoppingBag
+                            ? const Icon(
+                                Icons.shopping_bag,
+                                color: Colors.white,
+                              )
+                            : null,
+                    badgeColor: const Color(0xffFFB7B7),
+                  )
+                : const Text(''),
+          ),
         )
       ],
     );
