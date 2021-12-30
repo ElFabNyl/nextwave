@@ -30,6 +30,7 @@ class _BillingScreenState extends State<BillingScreen> {
                   description: 'Pay with MTN Mobile money',
                   onTap: () {
                     //do something here   |There will be some steps before the navigation to the other screen
+                    Navigator.of(context).pushNamed('/confirmation');
                   }),
               const SizedBox(height: 17.0),
               PaymentMethodCard(

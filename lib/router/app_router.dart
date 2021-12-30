@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nextwave/index.dart';
 import 'package:nextwave/presentation/Screens/send/address_infos.dart';
 import 'package:nextwave/presentation/Screens/send/billing.dart';
+import 'package:nextwave/presentation/Screens/send/confirmation.dart';
 import 'package:nextwave/presentation/Screens/send/delivery_details.dart';
 import 'package:nextwave/presentation/Screens/send/package_description.dart';
 import 'package:nextwave/presentation/Screens/send/terms_and_cond.dart';
@@ -21,6 +22,10 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const TermsAndConditions2());
      case '/billing':
         return MaterialPageRoute(builder: (_) => const BillingScreen());
+      case '/confirmation':
+        return MaterialPageRoute(builder: (_) => const Confirmation());
+      case '/tracking':
+        return MaterialPageRoute(builder: (_) => const Confirmation());
       default:
         return null;
     }

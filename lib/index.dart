@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nextwave/components/app_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:nextwave/presentation/Screens/send/Home.dart';
+import 'package:nextwave/presentation/Screens/send/tracking.dart';
 
 
 class Index extends StatefulWidget {
@@ -17,7 +18,7 @@ class _IndexState extends State<Index> {
   final List<Widget> _tabWidgets =  [
   
     Home(),
-    Text('tab2'),
+     Tracking(),
     Text('tab3'),
     Text('tab4'),
   ];
