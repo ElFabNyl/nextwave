@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nextwave/components/app_bar.dart';
 import 'package:nextwave/components/tracking_card.dart';
 
 class Tracking extends StatefulWidget {
@@ -12,53 +11,42 @@ class Tracking extends StatefulWidget {
 class _TrackingState extends State<Tracking> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const AppBarWidget(
-        showArrow: false,
-        showBell: true,
-        showBadge: true,
-        badgeContent: '4',
-        isShoppingBag: false,
-        title: Text('Tracking'),
-      ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
-            child: Column(
-              children: [
-                TrackingCard(
-                  title: 'Sent courier',
-                  time: '14:30 12.01.2021',
-                  initialPoint: 'Obili',
-                  finalPoint: 'Efoulan',
-                  status: 'waiting for agent',
-                  onTap: () {
-                    Navigator.of(context).pushNamed('/delivery_details');
-                  },
-                ),
-                TrackingCard(
-                  title: 'Sent courier',
-                  time: '14:30 12.01.2021',
-                  initialPoint: 'Bastos',
-                  finalPoint: 'Etoug-Ebe',
-                  status: 'In transit',
-                  onTap: () {
-                    Navigator.of(context).pushNamed('/delivery_details');
-                  },
-                ),
-                TrackingCard(
-                  title: 'Sent courier',
-                  time: '14:30 12.01.2021',
-                  initialPoint: 'France',
-                  finalPoint: 'Cameroun',
-                  status: 'completed',
-                  onTap: () {},
-                ),
-              ],
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
+        child: Column(
+          children: [
+            TrackingCard(
+              title: 'Sent courier',
+              time: '14:30 12.01.2021',
+              initialPoint: 'Obili',
+              finalPoint: 'Efoulan',
+              status: 'waiting for agent',
+              onTap: () {
+                Navigator.of(context).pushReplacementNamed('/delivery_details');
+              },
             ),
-          ),
+            const SizedBox(height: 15),
+            TrackingCard(
+              title: 'Sent courier',
+              time: '14:30 12.01.2021',
+              initialPoint: 'Bastos',
+              finalPoint: 'Etoug-Ebe',
+              status: 'In transit',
+              onTap: () {
+                Navigator.of(context).pushReplacementNamed('/delivery_details');
+              },
+            ),
+            const SizedBox(height: 15),
+            TrackingCard(
+              title: 'Sent courier',
+              time: '14:30 12.01.2021',
+              initialPoint: 'France',
+              finalPoint: 'Cameroun',
+              status: 'completed',
+              onTap: () {},
+            ),
+          ],
         ),
       ),
     );

@@ -63,7 +63,7 @@ class _ConfirmationState extends State<Confirmation> {
                     showArrowBack: false,
                     showArrowFoward: false,
                     onPressed: () {
-                      Navigator.of(context).pushNamed('/tracking');
+                      Navigator.of(context).pushReplacementNamed('/tracking');
                     })
               ],
             ),

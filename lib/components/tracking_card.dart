@@ -71,7 +71,7 @@ class TrackingCard extends StatelessWidget {
                         style: TextStyle(
                             color: Colors.grey,
                             fontWeight: FontWeight.w700,
-                            fontSize: 17.0),
+                            fontSize: 14.0),
                       ),
                       Text(
                         initialPoint,
