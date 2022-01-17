@@ -19,7 +19,7 @@ class HomeModuleCard extends StatelessWidget {
     return GestureDetector(
       onTap: action,
       child: Container(
-        height: MediaQuery.of(context).size.height * 0.14,
+        height: MediaQuery.of(context).size.height * 0.16,
         width: double.infinity,
         decoration: BoxDecoration(
             color: const Color(0xffEDEDED),
@@ -42,13 +42,13 @@ class HomeModuleCard extends StatelessWidget {
                 Text(
                   moduleName,
                   style: const TextStyle(
-                      fontWeight: FontWeight.w900, fontSize: 21.0),
+                      fontWeight: FontWeight.w900, fontSize: 19.0),
                 ),
                 const SizedBox(
                   height: 12.0,
                 ),
                 SizedBox(
-                  width: 200.0,
+                  width: 180.0,
                   child: Text(
                     moduleDescription,
                     style: const TextStyle(

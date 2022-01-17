@@ -15,7 +15,6 @@ class _ConfirmationState extends State<Confirmation> {
     return Scaffold(
       appBar: const AppBarWidget(
         isShoppingBag: false,
-        showArrow: true,
         showBell: false,
         showBadge: false,
         title: Text('Confirmation'),
@@ -59,11 +58,11 @@ class _ConfirmationState extends State<Confirmation> {
                 ),
                 const SizedBox(height: 30.0),
                 DefaultElevatedButton(
-                    text: const Text('See tracking'),
+                    text: const Text('Return to Home'),
                     showArrowBack: false,
                     showArrowFoward: false,
                     onPressed: () {
-                      Navigator.of(context).pushReplacementNamed('/tracking');
+                      Navigator.of(context).pushNamed('/tracking');
                     })
               ],
             ),

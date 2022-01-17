@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class HomeWelcomeCard extends StatelessWidget {
-  final String  welcomeText;
+  final String welcomeText;
   final String userName;
   final String imagePath;
   const HomeWelcomeCard({
@@ -40,7 +40,8 @@ class HomeWelcomeCard extends StatelessWidget {
               ],
             ),
           ),
-          Image.asset(imagePath)
+          const SizedBox(width: 8.0),
+          Flexible(child: Image.asset(imagePath))
         ],
       ),
     );

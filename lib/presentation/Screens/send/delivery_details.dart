@@ -17,7 +17,6 @@ class _DeliveryDetailsState extends State<DeliveryDetails> {
     return Scaffold(
       appBar: const AppBarWidget(
         isShoppingBag: false,
-        showArrow: true,
         showBell: false,
         showBadge: false,
         title: Text('Send Parcel'),

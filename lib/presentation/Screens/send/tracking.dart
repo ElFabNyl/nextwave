@@ -23,7 +23,7 @@ class _TrackingState extends State<Tracking> {
               finalPoint: 'Efoulan',
               status: 'waiting for agent',
               onTap: () {
-                Navigator.of(context).pushReplacementNamed('/delivery_details');
+                Navigator.of(context).pushNamed('/delivery_details');
               },
             ),
             const SizedBox(height: 15),
@@ -34,7 +34,7 @@ class _TrackingState extends State<Tracking> {
               finalPoint: 'Etoug-Ebe',
               status: 'In transit',
               onTap: () {
-                Navigator.of(context).pushReplacementNamed('/delivery_details');
+                Navigator.of(context).pushNamed('/delivery_details');
               },
             ),
             const SizedBox(height: 15),

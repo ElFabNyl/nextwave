@@ -15,7 +15,6 @@ class _TermsAndConditions2State extends State<TermsAndConditions2> {
     return Scaffold(
       appBar: const AppBarWidget(
         isShoppingBag: false,
-        showArrow: true,
         showBell: false,
         showBadge: false,
         title: Text(
@@ -63,7 +62,7 @@ class _TermsAndConditions2State extends State<TermsAndConditions2> {
                               fontWeight: FontWeight.w700),
                         ),
                         onPressed: () {
-                          Navigator.of(context).pop();
+                          Navigator.of(context).canPop();
                         },
                       ),
                     )

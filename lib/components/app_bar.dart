@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final bool isShoppingBag;
-  final bool showArrow;
   final bool showBell;
   final bool showBadge;
   final Widget? title;
@@ -13,7 +12,6 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   const AppBarWidget({
     Key? key,
     required this.isShoppingBag,
-    required this.showArrow,
     required this.showBell,
     required this.showBadge,
     this.title,
@@ -29,16 +27,6 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       title: title,
       elevation: 0.0,
-      leading: showArrow
-          ? IconButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              icon: const Icon(
-                Icons.arrow_back,
-                color: Colors.white,
-              ))
-          : null,
       centerTitle: true,
       actions: [
         Padding(

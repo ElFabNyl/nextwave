@@ -15,7 +15,6 @@ class _BillingScreenState extends State<BillingScreen> {
     return Scaffold(
       appBar: const AppBarWidget(
         isShoppingBag: false,
-        showArrow: true,
         showBell: false,
         showBadge: false,
         title: Text('Billing'),

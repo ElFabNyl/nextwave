@@ -4,7 +4,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:nextwave/presentation/Screens/send/Home.dart';
 import 'package:nextwave/presentation/Screens/send/tracking.dart';
 
-
 class Index extends StatefulWidget {
   const Index({Key? key}) : super(key: key);
 
@@ -15,10 +14,9 @@ class Index extends StatefulWidget {
 class _IndexState extends State<Index> {
   int _selectedTab = 0;
 
-  final List<Widget> _tabWidgets =  [
-  
+  final List<Widget> _tabWidgets = [
     Home(),
-     Tracking(),
+    Tracking(),
     Text('tab3'),
     Text('tab4'),
   ];
@@ -28,7 +26,6 @@ class _IndexState extends State<Index> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const AppBarWidget(
-        showArrow: false,
         showBell: true,
         showBadge: true,
         badgeContent: '4',
@@ -71,11 +68,13 @@ class _IndexState extends State<Index> {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
-        child: Column(
-          children: [
-            _tabWidgets[_selectedTab],
-          ],
+        padding: const EdgeInsets.symmetric(horizontal: 7.0, vertical: 20.0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              _tabWidgets[_selectedTab],
+            ],
+          ),
         ),
       ),
     );

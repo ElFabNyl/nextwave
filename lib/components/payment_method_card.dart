@@ -30,11 +30,13 @@ class PaymentMethodCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: 65.0,
-                    width: 65.0,
-                    child: Image.asset(
-                      imagePath,
-                      fit: BoxFit.cover,
+                    height: 50.0,
+                    width: 50.0,
+                    child: Flexible(
+                      child: Image.asset(
+                        imagePath,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ],
@@ -45,7 +47,7 @@ class PaymentMethodCard extends StatelessWidget {
                   Text(
                     description,
                     style: const TextStyle(
-                        fontWeight: FontWeight.w800, fontSize: 18.0),
+                        fontWeight: FontWeight.w800, fontSize: 15.0),
                   )
                 ],
               )

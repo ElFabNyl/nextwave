@@ -24,7 +24,7 @@ class TrackingCard extends StatelessWidget {
     return GestureDetector(
       onTap:  onTap,
       child: Container(
-        height: MediaQuery.of(context).size.height * 0.19,
+        height: MediaQuery.of(context).size.height * 0.22,
         width: double.infinity,
         decoration: BoxDecoration(
             color: const Color(0xffEDEDED),
@@ -43,21 +43,25 @@ class TrackingCard extends StatelessWidget {
                     style:const TextStyle(
                         color: Color(0xff980000),
                         fontWeight: FontWeight.w900,
-                        fontSize: 22.0),
+                        fontSize: 19.0),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children:  [
-                     const Icon(
-                        Icons.lock_clock,
-                        color: Colors.grey,
-                      ),
-                     const  SizedBox(width: 10.0),
-                      Text(
-                        time,
-                        style: const  TextStyle(color: Colors.grey),
-                      )
-                    ],
+                  Flexible(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children:  [
+                       const Icon(
+                          Icons.lock_clock,
+                          color: Colors.grey,
+                        ),
+                       const  SizedBox(width: 7.0),
+                        Flexible(
+                          child: Text(
+                            time,
+                            style: const  TextStyle(color: Colors.grey),
+                          ),
+                        )
+                      ],
+                    ),
                   )
                 ],
               ),
@@ -71,35 +75,37 @@ class TrackingCard extends StatelessWidget {
                         style: TextStyle(
                             color: Colors.grey,
                             fontWeight: FontWeight.w700,
-                            fontSize: 14.0),
+                            fontSize: 12.0),
                       ),
                       Text(
                         initialPoint,
                         style: const TextStyle(
                             color: Colors.grey,
                             fontWeight: FontWeight.w700,
-                            fontSize: 17.0),
+                            fontSize: 15.0),
                       ),
                     const  Text(
-                        '>',
+                        ' > ',
                         style: TextStyle(
                             color: Colors.grey,
                             fontWeight: FontWeight.w700,
-                            fontSize: 22.0),
+                            fontSize: 16.0),
                       ),
                       Text(
-                        finalPoint,
+                        finalPoint+' ',
                         style: const TextStyle(
                             color: Colors.grey,
                             fontWeight: FontWeight.w700,
-                            fontSize: 17.0),
+                            fontSize: 15.0),
                       )
                     ],
                   ),
-                   Text(
-                    status,
-                    style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 16.0),
-                  )
+                   Flexible(
+                     child: Text(
+                      status,
+                      style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 16.0),
+                                     ),
+                   )
                 ],
               ),
             ],

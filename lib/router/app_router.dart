@@ -6,6 +6,7 @@ import 'package:nextwave/presentation/Screens/send/confirmation.dart';
 import 'package:nextwave/presentation/Screens/send/delivery_details.dart';
 import 'package:nextwave/presentation/Screens/send/package_description.dart';
 import 'package:nextwave/presentation/Screens/send/terms_and_cond.dart';
+import 'package:nextwave/presentation/Screens/send/tracking.dart';
 
 class AppRouter {
   Route<dynamic>? onGenerateRoute(RouteSettings routeSettings) {
@@ -25,7 +26,7 @@ class AppRouter {
       case '/confirmation':
         return MaterialPageRoute(builder: (_) => const Confirmation());
       case '/tracking':
-        return MaterialPageRoute(builder: (_) => const Confirmation());
+        return MaterialPageRoute(builder: (_) => const Index());
       default:
         return null;
     }
