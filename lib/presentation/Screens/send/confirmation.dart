@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nextwave/components/app_bar.dart';
 import 'package:nextwave/components/elevated_button.dart';
+import 'package:nextwave/index.dart';
 
 class Confirmation extends StatefulWidget {
   const Confirmation({Key? key}) : super(key: key);
@@ -62,7 +63,10 @@ class _ConfirmationState extends State<Confirmation> {
                     showArrowBack: false,
                     showArrowFoward: false,
                     onPressed: () {
-                      Navigator.of(context).pushNamed('/tracking');
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => const Index()),
+                          (route) => false);
                     })
               ],
             ),
