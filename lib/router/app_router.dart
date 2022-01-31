@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nextwave/index.dart';
+import 'package:nextwave/presentation/Screens/authentification/OTP_verification.dart';
+import 'package:nextwave/presentation/Screens/authentification/auth_index.dart';
+import 'package:nextwave/presentation/Screens/authentification/user_infos.dart';
 import 'package:nextwave/presentation/Screens/send/address_infos.dart';
 import 'package:nextwave/presentation/Screens/send/billing.dart';
 import 'package:nextwave/presentation/Screens/send/confirmation.dart';
@@ -11,7 +14,7 @@ import 'package:nextwave/presentation/Screens/send/tracking.dart';
 class AppRouter {
   Route<dynamic>? onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
-      case '/':
+      case '/index':
         return MaterialPageRoute(builder: (_) => const Index());
       case '/package_description':
         return MaterialPageRoute(builder: (_) => const PackageDescription());
@@ -27,6 +30,12 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const Confirmation());
       case '/tracking':
         return MaterialPageRoute(builder: (_) => const Index());
+      case '/':
+        return MaterialPageRoute(builder: (_) => const AuthentificationIndexScreen());
+      case  '/sign_up_user_infos':
+        return MaterialPageRoute(builder: (_) => const SignUpUserInfos());
+      case  '/opt':
+        return MaterialPageRoute(builder: (_) => const OTPVerification());
       default:
         return null;
     }

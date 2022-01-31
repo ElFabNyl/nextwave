@@ -4,7 +4,7 @@ class InputFormFieldWidget extends StatelessWidget {
   final String? hintText;
   final Function(String)? onChanged;
   final Icon? prefixIcon;
-  final GestureDetector? suffixIcon;
+  final IconButton? suffixIcon;
   final bool obscureText;
   final FocusNode? focusNode;
 
