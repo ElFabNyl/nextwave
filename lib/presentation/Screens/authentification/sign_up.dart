@@ -2,16 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:nextwave/components/elevated_button.dart';
 import 'package:nextwave/components/text_field.dart';
 
-class AuthentificationIndexScreen extends StatefulWidget {
-  const AuthentificationIndexScreen({Key? key}) : super(key: key);
+class SignUp extends StatefulWidget {
+  const SignUp({Key? key}) : super(key: key);
 
   @override
-  _AuthentificationIndexScreenState createState() =>
-      _AuthentificationIndexScreenState();
+  _SignUpState createState() => _SignUpState();
 }
 
-class _AuthentificationIndexScreenState
-    extends State<AuthentificationIndexScreen> {
+class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,53 +87,27 @@ class _AuthentificationIndexScreenState
                 ),
                 hintText: 'Password',
                 suffixIcon: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      //
+                    },
                     icon: const Icon(
                       Icons.remove_red_eye,
                       color: Colors.grey,
                     )),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        'Forgot password?',
-                        style: TextStyle(
-                            color: Color(0xff1960CC),
-                            fontWeight: FontWeight.w500),
-                      ))
-                ],
-              ),
               const SizedBox(height: 10.0),
               DefaultElevatedButton(
                   text: const Text(
-                    'Sign in',
+                    'Sign up',
                     style: TextStyle(fontSize: 17.0),
                   ),
                   showArrowBack: false,
                   showArrowFoward: false,
-                  onPressed: () {}),
+                  onPressed: () {
+                    //
+                    Navigator.of(context).pushNamed('/sign_up_user_infos');
+                  }),
               const SizedBox(height: 15.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    'Don’t have an account yet?',
-                    style: TextStyle(color: Colors.grey, fontSize: 16.0),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pushNamed('/sign_up');
-                    },
-                    child: const Text(
-                      'Signup',
-                      style: TextStyle(color: Color(0xff1960CC)),
-                    ),
-                  )
-                ],
-              )
             ],
           ),
         ),

@@ -28,16 +28,24 @@ class _OTPVerificationState extends State<OTPVerification> {
               children: [
                 const Text(
                   'OTP verification code',
-                  style: TextStyle(fontWeight: FontWeight.w700, fontSize: 19.0),
+                  style: TextStyle(fontWeight: FontWeight.w700, fontSize: 22.0),
                 ),
                 const SizedBox(
                   height: 40.0,
                 ),
-                Text(
+                const Text(
                   'An sms will sent to your phone with an OTP code to verify your phone number',
-                  style: TextStyle(color: Colors.grey),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.grey,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16.0),
+                ),
+                const SizedBox(
+                  height: 20.0,
                 ),
                 const InputFormFieldWidget(hintText: 'Enter the OTP Code'),
+                const SizedBox(height: 5.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: const [
@@ -48,13 +56,15 @@ class _OTPVerificationState extends State<OTPVerification> {
                     )
                   ],
                 ),
-                const SizedBox(height: 20.0),
+                const SizedBox(height: 50.0),
                 DefaultElevatedButton(
                     text: const Text('Proceed'),
                     showArrowBack: false,
                     showArrowFoward: false,
                     onPressed: () {
                       //
+                      Navigator.of(context).pushNamed('/terms_and_policy');
+                      
                     })
               ],
             ),

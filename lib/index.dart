@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nextwave/components/app_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:nextwave/presentation/Screens/send/Home.dart';
+import 'package:nextwave/presentation/Screens/send/home.dart';
 import 'package:nextwave/presentation/Screens/send/tracking.dart';
 
 class Index extends StatefulWidget {

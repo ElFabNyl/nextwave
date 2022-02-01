@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:nextwave/index.dart';
-import 'package:nextwave/presentation/Screens/authentification/OTP_verification.dart';
+import 'package:nextwave/presentation/Screens/authentification/get_started.dart';
+import 'package:nextwave/presentation/Screens/authentification/otp_verification.dart';
 import 'package:nextwave/presentation/Screens/authentification/auth_index.dart';
+import 'package:nextwave/presentation/Screens/authentification/sign_up.dart';
+import 'package:nextwave/presentation/Screens/authentification/terms_policy.dart';
 import 'package:nextwave/presentation/Screens/authentification/user_infos.dart';
 import 'package:nextwave/presentation/Screens/send/address_infos.dart';
 import 'package:nextwave/presentation/Screens/send/billing.dart';
@@ -36,6 +39,12 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const SignUpUserInfos());
       case  '/opt':
         return MaterialPageRoute(builder: (_) => const OTPVerification());
+      case '/terms_and_policy':
+        return MaterialPageRoute(builder: (_) => const TermsAndPolicy());
+      case '/get_started':
+        return MaterialPageRoute(builder: (_)=> const GetStarted());
+      case '/sign_up':
+        return MaterialPageRoute(builder: (_)=> const SignUp());
       default:
         return null;
     }
