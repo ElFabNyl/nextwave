@@ -99,7 +99,10 @@ class _AuthentificationIndexScreenState
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        //
+                        Navigator.of(context).pushNamed('/resetPassword1');
+                      },
                       child: const Text(
                         'Forgot password?',
                         style: TextStyle(
