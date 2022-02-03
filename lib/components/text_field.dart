@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class InputFormFieldWidget extends StatelessWidget {
+
+  
   final String? hintText;
   final Function(String)? onChanged;
   final Icon? prefixIcon;
@@ -17,20 +19,31 @@ class InputFormFieldWidget extends StatelessWidget {
     this.obscureText = false,
     this.focusNode,
   }) : super(key: key);
+  
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      //validation
+      // The validator receives the text that the user has entered.
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Please fill the inputs';
+        }
+
+        return null;
+      },
+      //
       obscureText: obscureText,
       onChanged: onChanged,
       focusNode: focusNode,
       decoration: InputDecoration(
         hintText: hintText,
-        labelStyle: const  TextStyle(color: Colors.grey),
+        labelStyle: const TextStyle(color: Colors.grey),
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
         contentPadding:
             const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-        enabledBorder: const  OutlineInputBorder(
+        enabledBorder: const OutlineInputBorder(
           borderSide: BorderSide(
             color: Colors.grey,
           ),
@@ -40,7 +53,7 @@ class InputFormFieldWidget extends StatelessWidget {
         ),
         focusedBorder: const OutlineInputBorder(
           borderSide: BorderSide(
-            color:Colors.grey,
+            color: Colors.grey,
             width: 2,
           ),
           borderRadius: BorderRadius.all(
@@ -48,7 +61,7 @@ class InputFormFieldWidget extends StatelessWidget {
           ),
         ),
       ),
-      cursorColor:Colors.grey,
+      cursorColor: Colors.grey,
     );
   }
 }
