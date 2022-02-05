@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 
 class InputFormFieldWidget extends StatelessWidget {
-
-  
   final String? hintText;
   final Function(String)? onChanged;
   final Icon? prefixIcon;
   final IconButton? suffixIcon;
   final bool obscureText;
   final FocusNode? focusNode;
+  final String? Function(String?)? checkInput;
 
   const InputFormFieldWidget({
     Key? key,
@@ -18,20 +17,15 @@ class InputFormFieldWidget extends StatelessWidget {
     this.suffixIcon,
     this.obscureText = false,
     this.focusNode,
+    this.checkInput,
   }) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       //validation
       // The validator receives the text that the user has entered.
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'Please fill the inputs';
-        }
-
-        return null;
-      },
+      validator: checkInput,
       //
       obscureText: obscureText,
       onChanged: onChanged,
