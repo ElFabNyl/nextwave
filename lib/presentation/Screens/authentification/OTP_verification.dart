@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:nextwave/components/elevated_button.dart';
 import 'package:nextwave/components/text_field.dart';
+import 'package:timer_count_down/timer_count_down.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/tap_bounce_container.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class OTPVerification extends StatefulWidget {
   const OTPVerification({Key? key}) : super(key: key);
@@ -34,7 +38,7 @@ class _OTPVerificationState extends State<OTPVerification> {
                   height: 40.0,
                 ),
                 const Text(
-                  'An sms will sent to your phone with an OTP code to verify your phone number',
+                  'An sms will be send to you with an OTP code to verify your phone number',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Colors.grey,
@@ -48,11 +52,25 @@ class _OTPVerificationState extends State<OTPVerification> {
                 const SizedBox(height: 5.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: const [
-                    Text(
-                      '00:30',
-                      style: TextStyle(
-                          color: Colors.grey, fontWeight: FontWeight.w700),
+                  children: [
+                    Countdown(
+                      seconds: 30,
+                      build: (BuildContext context, double time) => Text(
+                          time.toString(),
+                          style: const TextStyle(
+                              color: Colors.grey, fontWeight: FontWeight.w900)),
+                      interval: const Duration(milliseconds: 100),
+                      onFinished: () {
+                        //if the time ends without him filling the input, we tell him that the time is over and send him back t
+                        showTopSnackBar(
+                          context,
+                          const CustomSnackBar.error(
+                            message: "Waiting time expired... is it not you?",
+                          ),
+                        );
+                        Navigator.of(context).pop();
+
+                      },
                     )
                   ],
                 ),
@@ -64,7 +82,6 @@ class _OTPVerificationState extends State<OTPVerification> {
                     onPressed: () {
                       //
                       Navigator.of(context).pushNamed('/terms_and_policy');
-                      
                     })
               ],
             ),

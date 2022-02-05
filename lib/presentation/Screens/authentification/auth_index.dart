@@ -135,11 +135,6 @@ class _AuthentificationIndexScreenState
                           setState(() {
                             obscurePassword = false;
                           });
-                          if (obscurePassword = false) {
-                            setState(() {
-                              obscurePassword = true;
-                            });
-                          }
                         },
                         icon: const Icon(
                           Icons.remove_red_eye,

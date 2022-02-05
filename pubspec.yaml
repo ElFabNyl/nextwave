@@ -39,6 +39,7 @@ dependencies:
   rate_my_app: ^1.1.1+1
   font_awesome_flutter: ^9.2.0
   top_snackbar_flutter: ^1.0.2
+  timer_count_down: ^2.2.1
 
 dev_dependencies:
   flutter_test:
