@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nextwave/components/elevated_button.dart';
 import 'package:nextwave/components/text_field.dart';
 import 'package:nextwave/index.dart';
+import 'package:nextwave/services/email_validation_service.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/tap_bounce_container.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
@@ -17,18 +18,7 @@ class AuthentificationIndexScreen extends StatefulWidget {
 class _AuthentificationIndexScreenState
     extends State<AuthentificationIndexScreen> {
   bool obscurePassword = true;
-  bool validateEmail(String? value) {
-    String pattern =
-        r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]"
-        r"{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]"
-        r"{0,253}[a-zA-Z0-9])?)*$";
-    RegExp regex = RegExp(pattern);
-    if (!regex.hasMatch(value.toString())) {
-      return false;
-    } else {
-      return true;
-    }
-  }
+  
 
   // Create a global key that uniquely identifies the Form widget
   final _formKey = GlobalKey<FormState>();
@@ -102,7 +92,7 @@ class _AuthentificationIndexScreenState
                     checkInput: (value) {
                       if (value == null ||
                           value.isEmpty ||
-                          !validateEmail(value)) {
+                          !EmailValidation.validateEmail(value)) {
                         return 'Enter a correct email';
                       }
                       return null;

@@ -10,8 +10,17 @@ class SignUpUserInfos extends StatefulWidget {
 }
 
 class _SignUpUserInfosState extends State<SignUpUserInfos> {
+
   @override
   Widget build(BuildContext context) {
+    //this line before the return, is to extract our incoming arguments
+    final Map arguments = ModalRoute.of(context)!.settings.arguments as Map;
+    
+    @override
+    void initState() {
+      super.initState();
+      print('voici ce que je cherche: '+arguments['email']);
+    }
     return Scaffold(
       appBar: AppBar(
         title: const Text(
