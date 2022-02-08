@@ -3,6 +3,9 @@ import 'package:nextwave/components/elevated_button.dart';
 import 'package:nextwave/router/app_router.dart';
 import 'package:rate_my_app/rate_my_app.dart';
 
+import 'presentation/Screens/authentification/sign_up.dart';
+import 'presentation/Screens/authentification/user_infos.dart';
+
 void main() {
   runApp(MyApp(
     appRouter: AppRouter(),
@@ -32,7 +35,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    
+
     _rateMyApp.init().then((_) {
       if (_rateMyApp.shouldOpenDialog) {
         _rateMyApp.showStarRateDialog(
@@ -77,12 +80,11 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'NextWafe',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.red,
-      ),
-      onGenerateRoute: widget.appRouter.onGenerateRoute,
-    );
+        title: 'NextWafe',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.red,
+        ),
+        onGenerateRoute: widget.appRouter.onGenerateRoute);
   }
 }

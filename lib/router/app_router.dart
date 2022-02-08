@@ -40,7 +40,9 @@ class AppRouter {
         return MaterialPageRoute(
             builder: (_) => const AuthentificationIndexScreen());
       case '/sign_up_user_infos':
-        return MaterialPageRoute(builder: (_) => const SignUpUserInfos());
+        return MaterialPageRoute(builder: (_) {
+          return SignUpUserInfos(routeSettings.arguments);
+        });
       case '/opt':
         return MaterialPageRoute(builder: (_) => const OTPVerification());
       case '/terms_and_policy':

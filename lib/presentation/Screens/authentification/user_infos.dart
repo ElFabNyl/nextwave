@@ -3,7 +3,8 @@ import 'package:nextwave/components/elevated_button.dart';
 import 'package:nextwave/components/text_field.dart';
 
 class SignUpUserInfos extends StatefulWidget {
-  const SignUpUserInfos({Key? key}) : super(key: key);
+  const SignUpUserInfos(Object? arguments, {Key? key}) : super(key: key);
+
 
   @override
   _SignUpUserInfosState createState() => _SignUpUserInfosState();
@@ -14,13 +15,10 @@ class _SignUpUserInfosState extends State<SignUpUserInfos> {
   @override
   Widget build(BuildContext context) {
     //this line before the return, is to extract our incoming arguments
-    final Map arguments = ModalRoute.of(context)!.settings.arguments as Map;
+
+    final  arguments = ModalRoute.of(context)!.settings.arguments as Map;
+
     
-    @override
-    void initState() {
-      super.initState();
-      print('voici ce que je cherche: '+arguments['email']);
-    }
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -37,6 +35,9 @@ class _SignUpUserInfosState extends State<SignUpUserInfos> {
               children: [
                 Image.asset('assets/images/user_infos.png'),
                 const SizedBox(height: 20.0),
+               //
+               Text(arguments['email']),
+               //
                 const InputFormFieldWidget(
                   prefixIcon: Icon(
                     Icons.person,

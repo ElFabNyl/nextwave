@@ -4,6 +4,7 @@ import 'package:nextwave/components/text_field.dart';
 import 'package:nextwave/services/email_validation_service.dart';
 
 class SignUp extends StatefulWidget {
+  
   const SignUp({Key? key}) : super(key: key);
 
   @override
@@ -11,7 +12,7 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  
+
   String inputEmail = "";
   String inputPassword = "";
 
