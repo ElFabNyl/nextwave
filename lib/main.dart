@@ -3,8 +3,6 @@ import 'package:nextwave/components/elevated_button.dart';
 import 'package:nextwave/router/app_router.dart';
 import 'package:rate_my_app/rate_my_app.dart';
 
-import 'presentation/Screens/authentification/sign_up.dart';
-import 'presentation/Screens/authentification/user_infos.dart';
 
 void main() {
   runApp(MyApp(

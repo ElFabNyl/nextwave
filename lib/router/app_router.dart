@@ -41,7 +41,8 @@ class AppRouter {
             builder: (_) => const AuthentificationIndexScreen());
       case '/sign_up_user_infos':
         return MaterialPageRoute(builder: (_) {
-          return SignUpUserInfos(routeSettings.arguments);
+          final args = routeSettings.arguments as Map;
+          return SignUpUserInfos(email: args['email'], password: args['password']);
         });
       case '/opt':
         return MaterialPageRoute(builder: (_) => const OTPVerification());

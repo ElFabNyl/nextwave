@@ -1,20 +1,32 @@
 import 'dart:convert';
 
 class User {
-  int id;
   String email;
+  String password;
+  String userName;
   String phone;
-  String name;
   User(
-      {required this.id,
-      required this.email,
+      {required this.email,
+      required this.password,
       required this.phone,
-      required this.name});
+      required this.userName});
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-        id: json['id'],
         email: json['email'],
+        password: json['password'],
         phone: json['phone'],
-        name: json['name']);
+        userName: json['userName']);
+  }
+
+  // for the session
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = Map<String, dynamic>();
+
+    data["email"] = email;
+    data["password"] = password;
+    data['phone'] = phone;
+    data['userName'] = userName;
+    return data;
   }
 }
+
