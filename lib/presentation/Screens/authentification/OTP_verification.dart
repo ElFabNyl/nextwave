@@ -26,15 +26,13 @@ class OTPVerification extends StatefulWidget {
 }
 
 class _OTPVerificationState extends State<OTPVerification> {
-  //counterValue: temps restant pour soumettre l'otp code
-  //otpGiven : variable qui va me permettre d'annuler le Snackbar si une valeur a été entrée
-  //et envoyé avant la fin du compteur
-  int counterValue = 30;
-  String otpGiven = "";
-
   final _formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    final String email = widget.incomingEmail;
+    final String password = widget.incomingPassword;
+    final String name = widget.incomingName;
+    final String phone = widget.incomingPhone;
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -79,9 +77,6 @@ class _OTPVerificationState extends State<OTPVerification> {
                       if (value == null || value.isEmpty) {
                         return 'Invalid input';
                       }
-                      setState(() {
-                        otpGiven = value;
-                      });
                     },
                   ),
                   const SizedBox(height: 5.0),
@@ -121,7 +116,11 @@ class _OTPVerificationState extends State<OTPVerification> {
                         Navigator.of(context).pushAndRemoveUntil(
                             MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    const TermsAndPolicy()),
+                                    TermsAndPolicy(
+                                        incomingEmail: email,
+                                        incomingPassword: password,
+                                        incomingName: name,
+                                        incomingPhone: phone)),
                             (route) => false);
                       })
                 ],

@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
+
 import 'package:nextwave/components/elevated_button.dart';
 import 'package:nextwave/presentation/Screens/authentification/auth_index.dart';
 
 class TermsAndPolicy extends StatelessWidget {
-  const TermsAndPolicy({Key? key}) : super(key: key);
+  final String incomingEmail;
+  final String incomingPassword;
+  final String incomingName;
+  final String incomingPhone;
+  const TermsAndPolicy(
+   { required this.incomingEmail,
+    required this.incomingPassword,
+    required this.incomingName,
+    required this.incomingPhone,}
+  );
 
   @override
   Widget build(BuildContext context) {

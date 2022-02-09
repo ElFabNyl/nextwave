@@ -45,8 +45,8 @@ class AppRouter {
       //   });
       // case '/opt':
       //   return MaterialPageRoute(builder: (_) => const OTPVerification());
-      case '/terms_and_policy':
-        return MaterialPageRoute(builder: (_) => const TermsAndPolicy());
+      // case '/terms_and_policy':
+      //   return MaterialPageRoute(builder: (_) => const TermsAndPolicy());
       case '/get_started':
         return MaterialPageRoute(builder: (_) => const GetStarted());
       case '/sign_up':
