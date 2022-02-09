@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:nextwave/components/elevated_button.dart';
 import 'package:nextwave/components/text_field.dart';
+import 'package:nextwave/presentation/Screens/authentification/user_infos.dart';
 import 'package:nextwave/services/email_validation_service.dart';
 
 class SignUp extends StatefulWidget {
-  
   const SignUp({Key? key}) : super(key: key);
 
   @override
@@ -12,7 +12,6 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-
   String inputEmail = "";
   String inputPassword = "";
 
@@ -145,11 +144,10 @@ class _SignUpState extends State<SignUp> {
                       showArrowFoward: false,
                       onPressed: () {
                         if (_formkey.currentState!.validate()) {
-                          Navigator.of(context).pushNamed('/sign_up_user_infos',
-                              arguments: {
-                                'email': inputEmail.toString(),
-                                'password': inputPassword.toString()
-                              });
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return SignUpUserInfos(inputEmail, inputPassword);
+                          }));
                         }
                         //
                       }),
