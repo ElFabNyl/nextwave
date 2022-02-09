@@ -39,13 +39,12 @@ class AppRouter {
       case '/sign_in':
         return MaterialPageRoute(
             builder: (_) => const AuthentificationIndexScreen());
-      case '/sign_up_user_infos':
-        return MaterialPageRoute(builder: (_) {
-          final args = routeSettings.arguments as Map;
-          return SignUpUserInfos(email: args['email'], password: args['password']);
-        });
-      case '/opt':
-        return MaterialPageRoute(builder: (_) => const OTPVerification());
+      // case '/sign_up_user_infos':
+      //   return MaterialPageRoute(builder: (_) {
+      //     return SignUpUserInfos();
+      //   });
+      // case '/opt':
+      //   return MaterialPageRoute(builder: (_) => const OTPVerification());
       case '/terms_and_policy':
         return MaterialPageRoute(builder: (_) => const TermsAndPolicy());
       case '/get_started':

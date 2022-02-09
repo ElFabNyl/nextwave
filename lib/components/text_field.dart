@@ -8,7 +8,6 @@ class InputFormFieldWidget extends StatelessWidget {
   final bool obscureText;
   final FocusNode? focusNode;
   final String? Function(String?)? checkInput;
-  final TextEditingController ? controller;
 
   const InputFormFieldWidget({
     Key? key,
@@ -19,13 +18,11 @@ class InputFormFieldWidget extends StatelessWidget {
     this.obscureText = false,
     this.focusNode,
     this.checkInput,
-     this.controller,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: controller,
       //validation
       // The validator receives the text that the user has entered.
       validator: checkInput,
