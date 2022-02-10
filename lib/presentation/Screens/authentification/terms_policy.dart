@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:nextwave/components/elevated_button.dart';
 import 'package:nextwave/presentation/Screens/authentification/auth_index.dart';
+import 'package:nextwave/presentation/Screens/authentification/get_started.dart';
 
-class TermsAndPolicy extends StatelessWidget {
+class TermsAndPolicy extends StatefulWidget {
   final String incomingEmail;
   final String incomingPassword;
   final String incomingName;
@@ -16,7 +17,13 @@ class TermsAndPolicy extends StatelessWidget {
   );
 
   @override
+  State<TermsAndPolicy> createState() => _TermsAndPolicyState();
+}
+
+class _TermsAndPolicyState extends State<TermsAndPolicy> {
+  @override
   Widget build(BuildContext context) {
+  
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -78,7 +85,10 @@ class TermsAndPolicy extends StatelessWidget {
                     showArrowFoward: false,
                     onPressed: () {
                       //
-                      Navigator.of(context).pushNamed('/get_started');
+                      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context){
+                        return GetStarted(name: widget.incomingName);
+                      }), (route) => false);
+                 
                     }),
                 const SizedBox(height: 10.0),
                 TextButton(

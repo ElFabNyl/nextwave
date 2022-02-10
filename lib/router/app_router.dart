@@ -47,8 +47,8 @@ class AppRouter {
       //   return MaterialPageRoute(builder: (_) => const OTPVerification());
       // case '/terms_and_policy':
       //   return MaterialPageRoute(builder: (_) => const TermsAndPolicy());
-      case '/get_started':
-        return MaterialPageRoute(builder: (_) => const GetStarted());
+      // case '/get_started':
+      //   return MaterialPageRoute(builder: (_) => const GetStarted());
       case '/sign_up':
         return MaterialPageRoute(builder: (_) => const SignUp());
       case '/':

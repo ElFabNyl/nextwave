@@ -1,10 +1,12 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:nextwave/components/elevated_button.dart';
 import 'package:nextwave/router/app_router.dart';
 import 'package:rate_my_app/rate_my_app.dart';
 
 
-void main() {
+void main() async{
+  await Firebase.initializeApp();
   runApp(MyApp(
     appRouter: AppRouter(),
   ));

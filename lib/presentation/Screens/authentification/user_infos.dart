@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 import 'package:nextwave/components/elevated_button.dart';
@@ -93,8 +94,6 @@ class _SignUpUserInfosState extends State<SignUpUserInfos> {
                       onPressed: () {
                         //
                         if (_formkey.currentState!.validate()) {
-                          //avant de Naviger vers la prochaine page, je dois demander à firebase d'envoyer l'otp au numero recu.
-
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
                             return OTPVerification(

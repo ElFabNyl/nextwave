@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+
 import 'package:nextwave/components/elevated_button.dart';
 import 'package:nextwave/index.dart';
 
 class GetStarted extends StatefulWidget {
-  const GetStarted({Key? key}) : super(key: key);
+  final String name;
+  const GetStarted({
+    Key? key,
+    required this.name,
+  }) : super(key: key);
 
   @override
   _GetStartedState createState() => _GetStartedState();
@@ -30,6 +35,7 @@ class _GetStartedState extends State<GetStarted> {
               ),
               const Text(
                 'Your account has been created successfuly. welcome on board',
+                textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Colors.grey,
                     fontSize: 18.0,
@@ -38,9 +44,9 @@ class _GetStartedState extends State<GetStarted> {
               const SizedBox(
                 height: 10.0,
               ),
-              const Text(
-                'Rihanna Fenty',
-                style: TextStyle(fontWeight: FontWeight.w800, fontSize: 20.0),
+               Text(
+                widget.name,
+                style: const  TextStyle(fontWeight: FontWeight.w800, fontSize: 20.0),
               ),
               const SizedBox(
                 height: 40.0,
@@ -50,7 +56,7 @@ class _GetStartedState extends State<GetStarted> {
                   showArrowBack: false,
                   showArrowFoward: false,
                   onPressed: () {
-                    //
+                    //he has to go to the next page with his name and the token 
                     Navigator.of(context).pushAndRemoveUntil(
                         MaterialPageRoute(
                             builder: (BuildContext context) => const Index()),

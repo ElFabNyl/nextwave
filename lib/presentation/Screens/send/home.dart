@@ -17,7 +17,7 @@ class _HomeState extends State<Home> {
       children: [
         const HomeWelcomeCard(
             welcomeText: 'welcome',
-            userName: 'Rihanna Fenty',
+            userName: 'User Name',
             imagePath: 'assets/images/moto.png'),
         const SizedBox(height: 40.0),
         HomeModuleCard(

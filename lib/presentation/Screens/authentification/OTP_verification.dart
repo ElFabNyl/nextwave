@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:nextwave/presentation/Screens/authentification/terms_policy.dart';
 import 'package:timer_count_down/timer_count_down.dart';
@@ -26,6 +27,9 @@ class OTPVerification extends StatefulWidget {
 }
 
 class _OTPVerificationState extends State<OTPVerification> {
+  //
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  //
   final _formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -110,8 +114,36 @@ class _OTPVerificationState extends State<OTPVerification> {
                       text: const Text('Proceed'),
                       showArrowBack: false,
                       showArrowFoward: false,
-                      onPressed: () {
+                      onPressed: () async {
                         //avant d'avancer, on doit se rassurer que l'otp est valide.
+                        await _auth.verifyPhoneNumber(
+                            phoneNumber: widget.incomingPhone,
+                            verificationCompleted:
+                                (PhoneAuthCredential credential) async {
+                              //
+                              // ANDROID ONLY!
+
+                              // Sign the user in (or link) with the auto-generated credential
+                              await _auth.signInWithCredential(credential);
+                            },
+                            verificationFailed: (FirebaseAuthException
+                                verificationFailed) async {
+                              //
+                              if (verificationFailed.code == 'invalid-phone-number') {
+
+                                //i should instead return a popop here
+                                print('The provided phone number is not valid.');
+                                   
+                              }
+                            },
+                            codeSent: (String verificationId,
+                                int? resendToken) async {
+                              //
+                            },
+                            codeAutoRetrievalTimeout:
+                                (String verificationId) async {
+                              //
+                            });
 
                         Navigator.of(context).pushAndRemoveUntil(
                             MaterialPageRoute(
