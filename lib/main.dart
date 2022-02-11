@@ -6,6 +6,7 @@ import 'package:rate_my_app/rate_my_app.dart';
 
 
 void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp(
     appRouter: AppRouter(),

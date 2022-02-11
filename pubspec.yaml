@@ -43,6 +43,7 @@ dependencies:
   timer_count_down: ^2.2.1
   firebase_core: ^1.12.0
   firebase_auth: ^3.3.6
+  loading_indicator: ^3.0.2
 
 dev_dependencies:
   flutter_test:
