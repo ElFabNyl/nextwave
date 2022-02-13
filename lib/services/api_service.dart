@@ -15,21 +15,21 @@ class Api {
       'phone': phone
     });
 
-    final response = await http.post(url, headers: AppUrl.headers, body: body);
+    final http.Response response =
+        await http.post(url, headers: AppUrl.headers, body: body);
 
-    if (response.statusCode == 201) {
+    if (response.statusCode == 201 ) {
       // If the server did return a 201 CREATED response,
       // then parse the JSON.
+ 
+      
       return User.fromJson(jsonDecode(response.body));
     } else {
       // If the server did not return a 201 CREATED response,
       // then throw an exception.
-      throw Exception('Failed to create the user.');
+      throw Exception('Failed to register the user.');
     }
   }
-
-
-
 
   Future<dynamic> login(String email, String password) async {
     try {

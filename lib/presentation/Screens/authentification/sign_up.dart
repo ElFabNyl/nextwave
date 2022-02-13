@@ -120,8 +120,8 @@ class _SignUpState extends State<SignUp> {
                     checkInput: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Invalid input';
-                      } else if (value.length < 6) {
-                        return 'A 6 digits password is required';
+                      } else if (value.length < 8) {
+                        return 'A 8 digits password is required';
                       }
 
                       return null;

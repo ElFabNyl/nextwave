@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 
@@ -25,12 +26,11 @@ class _SignUpUserInfosState extends State<SignUpUserInfos> {
   String inputName = '';
   String inputPhone = '';
   String verificationID = '';
-  //
+  //connexion avec firebase
   final FirebaseAuth _auth = FirebaseAuth.instance;
   //
   bool showLoading = false;
   //
-
   final _formkey = GlobalKey<FormState>();
 
   @override
@@ -93,7 +93,7 @@ class _SignUpUserInfosState extends State<SignUpUserInfos> {
                           checkInput: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Invalid input';
-                            } else if (value.length < 12) {
+                            } else if (value.length < 9) {
                               return 'incorrect phone number';
                             }
                             return null;
@@ -107,48 +107,78 @@ class _SignUpUserInfosState extends State<SignUpUserInfos> {
                             showArrowFoward: false,
                             onPressed: () async {
                               //
-                              setState(() {
-                                showLoading = true;
-                              });
+
                               //avant d'avancer, on doit se rassurer d'envoyer l'otp.
                               //we create the phone auth credential
                               //==============================================================================
-                              await _auth.verifyPhoneNumber(
-                                  phoneNumber: inputPhone,
-                                  verificationCompleted:
-                                      (PhoneAuthCredential credential) async {
-                                    setState(() {
-                                      showLoading = false;
-                                    });
-                                    // ANDROID ONLY!
+                              if (_formkey.currentState!.validate()) {
+                                //
+                                setState(() {
+                                  showLoading = true;
+                                });
+                                await _auth.verifyPhoneNumber(
+                                    phoneNumber: inputPhone,
+                                    timeout: const Duration(seconds: 90),
+                                    verificationCompleted:
+                                        (PhoneAuthCredential credential) async {
+                                      setState(() {
+                                        showLoading = false;
+                                      });
+                                      // ANDROID ONLY!
 
-                                    // Sign the user in (or link) with the auto-generated credential
-                                    await _auth
-                                        .signInWithCredential(credential);
-                                  },
-                                  verificationFailed: (FirebaseAuthException
-                                      verificationFailed) async {
-                                    //
-                                    showTopSnackBar(
-                                      context,
-                                      CustomSnackBar.error(
-                                        message: verificationFailed.message
-                                            .toString(),
-                                      ),
-                                    );
-                                    setState(() {
-                                      showLoading = false;
-                                    });
-                                  },
-                                  codeSent: (String verificationId,
-                                      int? resendToken) async {
-                                    setState(() {
-                                      showLoading = false;
-                                      verificationID = verificationId;
-                                    });
-                                    
+                                      // Sign the user in (or link) with the auto-generated credential
+                                      await _auth
+                                          .signInWithCredential(credential)
+                                          .then((value) async {
+                                        CupertinoAlertDialog(
+                                          title: const Text(
+                                              'Phone Authentification'),
+                                          content: const Text(
+                                              'Phone number verified'),
+                                          actions: [
+                                            CupertinoButton(
+                                              child: const Text('Close'),
+                                              onPressed: () {
+                                                Navigator.pushAndRemoveUntil(
+                                                    context, MaterialPageRoute(
+                                                        builder: (context) {
+                                                  return OTPVerification(
+                                                    incomingEmail: inputEmail,
+                                                    incomingPassword:
+                                                        inputPassword,
+                                                    incomingName: inputName,
+                                                    incomingPhone: inputPhone,
+                                                    incomingverificationID:
+                                                        verificationID,
+                                                  );
+                                                }), (route) => false);
+                                              },
+                                            ),
+                                          ],
+                                        );
+                                      });
+                                    },
+                                    verificationFailed: (FirebaseAuthException
+                                        verificationFailed) async {
+                                      //
+                                      setState(() {
+                                        showLoading = false;
+                                      });
+                                      showTopSnackBar(
+                                        context,
+                                        CustomSnackBar.error(
+                                          message: verificationFailed.message
+                                              .toString(),
+                                        ),
+                                      );
+                                    },
+                                    codeSent: (String verificationId,
+                                        int? resendToken) async {
+                                      setState(() {
+                                        showLoading = false;
+                                        verificationID = verificationId;
+                                      });
 
-                                    if (_formkey.currentState!.validate()) {
                                       Navigator.push(context,
                                           MaterialPageRoute(builder: (context) {
                                         return OTPVerification(
@@ -160,16 +190,16 @@ class _SignUpUserInfosState extends State<SignUpUserInfos> {
                                               verificationID,
                                         );
                                       }));
-                                    }
-                                  },
-                                  codeAutoRetrievalTimeout:
-                                      (String verificationId) async {
-                                    //
-                                    setState(() {
-                                      showLoading = false;
+                                    },
+                                    codeAutoRetrievalTimeout:
+                                        (String verificationId) async {
+                                      //
+                                      setState(() {
+                                        showLoading = false;
+                                      });
                                     });
-                                  });
-                            })
+                              }
+                            }),
                       ],
                     ),
             ),

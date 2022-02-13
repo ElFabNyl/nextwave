@@ -95,7 +95,7 @@ class _OTPVerificationState extends State<OTPVerification> {
                           },
                           checkInput: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Invalid input';
+                              return 'Invalid Code';
                             }
                           },
                         ),
@@ -131,38 +131,40 @@ class _OTPVerificationState extends State<OTPVerification> {
                             showArrowBack: false,
                             showArrowFoward: false,
                             onPressed: () async {
-                              setState(() {
-                                showLoading = true;
-                              });
                               // on check l'otp
-
-                              try {
-                                PhoneAuthCredential phoneAuthCredential =
-                                    PhoneAuthProvider.credential(
-                                        verificationId:
-                                            widget.incomingverificationID,
-                                        smsCode: codeOTP);
-                                await _auth
-                                    .signInWithCredential(phoneAuthCredential);
+                              if (_formkey.currentState!.validate()) {
                                 setState(() {
-                                  showLoading = false;
+                                  showLoading = true;
                                 });
-                                Navigator.of(context).pushAndRemoveUntil(
-                                    MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            TermsAndPolicy(
-                                                incomingEmail: email,
-                                                incomingPassword: password,
-                                                incomingName: name,
-                                                incomingPhone: phone)),
-                                    (route) => false);
-                              } on FirebaseAuthException catch (e) {
-                                showTopSnackBar(
-                                  context,
-                                  CustomSnackBar.error(
-                                    message: e.message.toString(),
-                                  ),
-                                );
+                                try {
+                                  PhoneAuthCredential phoneAuthCredential =
+                                      PhoneAuthProvider.credential(
+                                          verificationId:
+                                              widget.incomingverificationID,
+                                          smsCode: codeOTP);
+                                  await _auth.signInWithCredential(
+                                      phoneAuthCredential);
+                                  setState(() {
+                                    showLoading = false;
+                                  });
+                                  Navigator.of(context).pushAndRemoveUntil(
+                                      MaterialPageRoute(
+                                          builder: (BuildContext context) =>
+                                              TermsAndPolicy(
+                                                  incomingEmail: email,
+                                                  incomingPassword: password,
+                                                  incomingName: name,
+                                                  incomingPhone: phone)),
+                                      (route) => false);
+                                } on FirebaseAuthException catch (e) {
+                                  showTopSnackBar(
+                                    context,
+                                    CustomSnackBar.error(
+                                      message: e.message.toString(),
+                                    ),
+                                  );
+                                  Navigator.pop(context);
+                                }
                               }
                             })
                       ],

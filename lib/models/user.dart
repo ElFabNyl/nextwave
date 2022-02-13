@@ -14,19 +14,8 @@ class User {
     return User(
         email: json['email'],
         password: json['password'],
-        phone: json['phone'],
-        userName: json['userName']);
-  }
-
-  // for the session
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-
-    data["email"] = email;
-    data["password"] = password;
-    data['phone'] = phone;
-    data['userName'] = userName;
-    return data;
+        userName: json['userName'],
+        phone: json['phone']);
+        
   }
 }
-

@@ -1,29 +1,32 @@
 import 'package:flutter/material.dart';
 
 import 'package:nextwave/components/elevated_button.dart';
+import 'package:nextwave/models/user.dart';
 import 'package:nextwave/presentation/Screens/authentification/auth_index.dart';
 import 'package:nextwave/presentation/Screens/authentification/get_started.dart';
+import 'package:nextwave/services/api_service.dart';
 
 class TermsAndPolicy extends StatefulWidget {
   final String incomingEmail;
   final String incomingPassword;
   final String incomingName;
   final String incomingPhone;
-  const TermsAndPolicy(
-   { required this.incomingEmail,
+  const TermsAndPolicy({
+    required this.incomingEmail,
     required this.incomingPassword,
     required this.incomingName,
-    required this.incomingPhone,}
-  );
+    required this.incomingPhone,
+  });
 
   @override
   State<TermsAndPolicy> createState() => _TermsAndPolicyState();
 }
 
 class _TermsAndPolicyState extends State<TermsAndPolicy> {
+  late dynamic userRegistered = "hjfuyfuy";
+
   @override
   Widget build(BuildContext context) {
-  
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -84,11 +87,22 @@ class _TermsAndPolicyState extends State<TermsAndPolicy> {
                     showArrowBack: false,
                     showArrowFoward: false,
                     onPressed: () {
+                      //envant de l'envoyer sur la prochaine page, on appelle l'API pour l'enregistrer
+                      //et recevoir son token de connexion.
                       //
-                      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context){
+                      //
+                      setState(() async {
+                        userRegistered = await Api.register(
+                            widget.incomingEmail,
+                            widget.incomingPassword,
+                            widget.incomingName,
+                            widget.incomingPhone);
+                      });
+
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(builder: (BuildContext context) {
                         return GetStarted(name: widget.incomingName);
                       }), (route) => false);
-                 
                     }),
                 const SizedBox(height: 10.0),
                 TextButton(
@@ -105,7 +119,23 @@ class _TermsAndPolicyState extends State<TermsAndPolicy> {
                       style: TextStyle(
                           color: Color(0xff0C4CC9),
                           fontWeight: FontWeight.w800),
-                    ))
+                    )),
+
+                // to display====================
+                FutureBuilder<User>(
+                  future: userRegistered,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return Text('snapshot.data!.email.toString()');
+                    } else if (snapshot.hasError) {
+                      return Text('${snapshot.error}');
+                    }
+
+                    return const CircularProgressIndicator();
+                  },
+                )
+
+                //============================
               ]),
             ],
           ),
