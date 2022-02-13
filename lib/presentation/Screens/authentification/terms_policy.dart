@@ -23,7 +23,9 @@ class TermsAndPolicy extends StatefulWidget {
 }
 
 class _TermsAndPolicyState extends State<TermsAndPolicy> {
-  late dynamic userRegistered = "hjfuyfuy";
+  var userRegistered;
+  //
+  bool showLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -34,113 +36,106 @@ class _TermsAndPolicyState extends State<TermsAndPolicy> {
           style: TextStyle(color: Colors.white),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 30.0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: const [
-                  Text(
-                    "Return policy",
-                    style:
-                        TextStyle(fontWeight: FontWeight.w800, fontSize: 19.0),
-                  )
-                ],
-              ),
-              const SizedBox(height: 10.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: const [
-                  Expanded(
-                    child: Text(
-                        'brejbopn jngvioerg erieohgoierg irgjeoinr iojgeirg eiorgehrog erigoeigo igeorhghrg  blablalba fçezh eziufze fiuf iufiu flutter fuzifz ejgejrgjpjrger ingehr ireogh'),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 30.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: const [
-                  Text(
-                    "Terms of service",
-                    style:
-                        TextStyle(fontWeight: FontWeight.w800, fontSize: 19.0),
-                  )
-                ],
-              ),
-              const SizedBox(height: 10.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: const [
-                  Expanded(
-                    child: Text(
-                        'brejbopn jngvioerg erieohgoierg irgjeoinr iojgeirg eiorgehrog erigoeigo igeorhghrg  blablalba fçezh eziufze fiuf iufiu flutter fuzifz ejgejrgjpjrger ingehr ireogh'),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 50.0),
-              Column(children: [
-                DefaultElevatedButton(
-                    text: const Text('I Agree'),
-                    showArrowBack: false,
-                    showArrowFoward: false,
-                    onPressed: () {
-                      //envant de l'envoyer sur la prochaine page, on appelle l'API pour l'enregistrer
-                      //et recevoir son token de connexion.
-                      //
-                      //
-                      setState(() async {
-                        userRegistered = await Api.register(
-                            widget.incomingEmail,
-                            widget.incomingPassword,
-                            widget.incomingName,
-                            widget.incomingPhone);
-                      });
+      body: showLoading
+          ? const Center(
+              child: CircularProgressIndicator(
+              color: Colors.red,
+            ))
+          : Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 15.0, vertical: 30.0),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: const [
+                        Text(
+                          "Return policy",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w800, fontSize: 19.0),
+                        )
+                      ],
+                    ),
+                    const SizedBox(height: 10.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: const [
+                        Expanded(
+                          child: Text(
+                              'brejbopn jngvioerg erieohgoierg irgjeoinr iojgeirg eiorgehrog erigoeigo igeorhghrg  blablalba fçezh eziufze fiuf iufiu flutter fuzifz ejgejrgjpjrger ingehr ireogh'),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 30.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: const [
+                        Text(
+                          "Terms of service",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w800, fontSize: 19.0),
+                        )
+                      ],
+                    ),
+                    const SizedBox(height: 10.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: const [
+                        Expanded(
+                          child: Text(
+                              'brejbopn jngvioerg erieohgoierg irgjeoinr iojgeirg eiorgehrog erigoeigo igeorhghrg  blablalba fçezh eziufze fiuf iufiu flutter fuzifz ejgejrgjpjrger ingehr ireogh'),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 50.0),
+                    Column(children: [
+                      DefaultElevatedButton(
+                          text: const Text('I Agree'),
+                          showArrowBack: false,
+                          showArrowFoward: false,
+                          onPressed: () async {
+                            //avant de l'envoyer sur la prochaine page, on appelle l'API pour l'enregistrer
+                            //et recevoir son token de connexion.
+                            //
 
-                      Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(builder: (BuildContext context) {
-                        return GetStarted(name: widget.incomingName);
-                      }), (route) => false);
-                    }),
-                const SizedBox(height: 10.0),
-                TextButton(
-                    onPressed: () {
-                      //s'il n'accepte pas les conditions, on le balance à l'accueil
-                      Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  const AuthentificationIndexScreen()),
-                          (route) => false);
-                    },
-                    child: const Text(
-                      'I desagree',
-                      style: TextStyle(
-                          color: Color(0xff0C4CC9),
-                          fontWeight: FontWeight.w800),
-                    )),
+                            userRegistered = await (Api.register(
+                              widget.incomingName,
+                              widget.incomingPhone,
+                              widget.incomingEmail,
+                              widget.incomingPassword,
+                             
+                            ));
 
-                // to display====================
-                FutureBuilder<User>(
-                  future: userRegistered,
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      return Text('snapshot.data!.email.toString()');
-                    } else if (snapshot.hasError) {
-                      return Text('${snapshot.error}');
-                    }
-
-                    return const CircularProgressIndicator();
-                  },
-                )
-
-                //============================
-              ]),
-            ],
-          ),
-        ),
-      ),
+                            Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) {
+                              return GetStarted(
+                                  name: widget.incomingName,
+                                  incominguserRegistered: userRegistered as Future<User>);
+                            }), (route) => false);
+                          }),
+                      const SizedBox(height: 10.0),
+                      TextButton(
+                          onPressed: () {
+                            //s'il n'accepte pas les conditions, on le balance à l'accueil
+                            Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        const AuthentificationIndexScreen()),
+                                (route) => false);
+                          },
+                          child: const  Text(
+                            'I desagree' ,
+                            style: TextStyle(
+                                color: Color(0xff0C4CC9),
+                                fontWeight: FontWeight.w800),
+                          )),
+                    ]),
+                  ],
+                ),
+              ),
+            ),
     );
   }
 }

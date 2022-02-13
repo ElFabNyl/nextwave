@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 
 import 'package:nextwave/components/elevated_button.dart';
 import 'package:nextwave/index.dart';
+import 'package:nextwave/models/user.dart';
 
 class GetStarted extends StatefulWidget {
-  final String name;
+  final String name; 
+  final Future<User> incominguserRegistered;
   const GetStarted({
     Key? key,
     required this.name,
+    required this.incominguserRegistered,
   }) : super(key: key);
 
   @override
@@ -61,7 +64,8 @@ class _GetStartedState extends State<GetStarted> {
                         MaterialPageRoute(
                             builder: (BuildContext context) => const Index()),
                         (route) => false);
-                  })
+                  }),
+
             ],
           ),
         ),

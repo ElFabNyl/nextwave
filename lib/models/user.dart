@@ -1,21 +1,30 @@
 import 'dart:convert';
 
 class User {
-  String email;
-  String password;
   String userName;
   String phone;
-  User(
-      {required this.email,
-      required this.password,
-      required this.phone,
-      required this.userName});
+  String email;
+  String password;
+
+  User({
+    required this.email,
+    required this.password,
+    required this.phone,
+    required this.userName,
+  });
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-        email: json['email'],
-        password: json['password'],
-        userName: json['userName'],
-        phone: json['phone']);
-        
+      userName: json['userName'].toString(),
+      phone: json['phone'].toString(),
+      email: json['email'].toString(),
+      password: json['password'].toString(),
+    );
   }
+
+  Map<String, dynamic> toJson() => {
+        "userName": userName,
+        "phone": phone,
+        "password": password,
+        "email": email,
+      };
 }
