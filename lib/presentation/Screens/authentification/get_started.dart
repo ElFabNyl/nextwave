@@ -5,11 +5,9 @@ import 'package:nextwave/index.dart';
 import 'package:nextwave/models/user.dart';
 
 class GetStarted extends StatefulWidget {
-  final String name; 
-  final Future<User> incominguserRegistered;
+  final User incominguserRegistered;
   const GetStarted({
     Key? key,
-    required this.name,
     required this.incominguserRegistered,
   }) : super(key: key);
 
@@ -47,9 +45,13 @@ class _GetStartedState extends State<GetStarted> {
               const SizedBox(
                 height: 10.0,
               ),
-               Text(
-                widget.name,
-                style: const  TextStyle(fontWeight: FontWeight.w800, fontSize: 20.0),
+
+              // 
+              //
+              Text(
+                widget.incominguserRegistered.userName,
+                style: const TextStyle(
+                    fontWeight: FontWeight.w800, fontSize: 20.0),
               ),
               const SizedBox(
                 height: 40.0,
@@ -59,13 +61,12 @@ class _GetStartedState extends State<GetStarted> {
                   showArrowBack: false,
                   showArrowFoward: false,
                   onPressed: () {
-                    //he has to go to the next page with his name and the token 
+                    //he has to go to the next page with his name and the token
                     Navigator.of(context).pushAndRemoveUntil(
                         MaterialPageRoute(
                             builder: (BuildContext context) => const Index()),
                         (route) => false);
                   }),
-
             ],
           ),
         ),

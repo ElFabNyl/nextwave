@@ -14,10 +14,10 @@ class User {
   });
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-      userName: json['userName'].toString(),
-      phone: json['phone'].toString(),
-      email: json['email'].toString(),
-      password: json['password'].toString(),
+      userName: json['user']['last_name'].toString(),
+      phone: json['user']['phone'].toString(),
+      email: json['user']['email'].toString(),
+      password: json['user']['password'].toString(),
     );
   }
 

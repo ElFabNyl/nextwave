@@ -13,10 +13,7 @@ class Api {
       'phone': phone,
       'email': email,
       'password': password,
-      
     });
-
-    print(body);
 
     final http.Response response =
         await http.post(url, headers: AppUrl.headers, body: body);
@@ -24,7 +21,6 @@ class Api {
     if (response.statusCode == 201) {
       // If the server did return a 201 CREATED response,
       // then parse the JSON.
-
       return User.fromJson(jsonDecode(response.body));
     } else {
       // If the server did not return a 201 CREATED response,

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 import 'package:nextwave/components/elevated_button.dart';
@@ -23,7 +25,7 @@ class TermsAndPolicy extends StatefulWidget {
 }
 
 class _TermsAndPolicyState extends State<TermsAndPolicy> {
-  var userRegistered;
+  late User userRegistered;
   //
   bool showLoading = false;
 
@@ -98,21 +100,26 @@ class _TermsAndPolicyState extends State<TermsAndPolicy> {
                             //avant de l'envoyer sur la prochaine page, on appelle l'API pour l'enregistrer
                             //et recevoir son token de connexion.
                             //
+                            setState(() {
+                              showLoading = true;
+                            });
 
                             userRegistered = await (Api.register(
                               widget.incomingName,
                               widget.incomingPhone,
                               widget.incomingEmail,
                               widget.incomingPassword,
-                             
                             ));
+
+                            setState(() {
+                              showLoading = false;
+                            });
 
                             Navigator.of(context).pushAndRemoveUntil(
                                 MaterialPageRoute(
                                     builder: (BuildContext context) {
                               return GetStarted(
-                                  name: widget.incomingName,
-                                  incominguserRegistered: userRegistered as Future<User>);
+                                  incominguserRegistered: userRegistered);
                             }), (route) => false);
                           }),
                       const SizedBox(height: 10.0),
@@ -125,8 +132,8 @@ class _TermsAndPolicyState extends State<TermsAndPolicy> {
                                         const AuthentificationIndexScreen()),
                                 (route) => false);
                           },
-                          child: const  Text(
-                            'I desagree' ,
+                          child: const Text(
+                            'I desagree',
                             style: TextStyle(
                                 color: Color(0xff0C4CC9),
                                 fontWeight: FontWeight.w800),
