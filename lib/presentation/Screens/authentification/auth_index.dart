@@ -157,12 +157,7 @@ class _AuthentificationIndexScreenState
                       showArrowFoward: false,
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          // showTopSnackBar(
-                          //   context,
-                          //   const CustomSnackBar.error(
-                          //     message: "Data Processing...",
-                          //   ),
-                          // );
+
                           Navigator.of(context).pushAndRemoveUntil(
                               MaterialPageRoute(
                                   builder: (BuildContext context) =>
