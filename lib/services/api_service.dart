@@ -30,7 +30,9 @@ class Api {
       // then parse the JSON.
 
       //we keep the token of the user so as to keep him logged in
+      //we will keep also his name to display it where need
       sharedPreferences.setString('token', jsonDecode(response.body)['token']);
+      sharedPreferences.setString('name',  jsonDecode(response.body)['user']['last_name']);
       return User.fromJson(jsonDecode(response.body));
     } else {
       // If the server did not return a 201 CREATED response,
