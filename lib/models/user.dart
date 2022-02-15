@@ -18,6 +18,7 @@ class User {
       phone: json['user']['phone'].toString(),
       email: json['user']['email'].toString(),
       password: json['user']['password'].toString(),
+      
     );
   }
 
