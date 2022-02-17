@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nextwave/components/elevated_button.dart';
 import 'package:nextwave/components/text_field.dart';
 import 'package:nextwave/index.dart';
+import 'package:nextwave/models/user.dart';
 import 'package:nextwave/services/email_validation_service.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/tap_bounce_container.dart';
@@ -17,8 +18,12 @@ class AuthentificationIndexScreen extends StatefulWidget {
 
 class _AuthentificationIndexScreenState
     extends State<AuthentificationIndexScreen> {
+  //
   bool obscurePassword = true;
-  
+  //
+  late User loggedInUser;
+  //
+  bool showLoading = false;
 
   // Create a global key that uniquely identifies the Form widget
   final _formKey = GlobalKey<FormState>();
@@ -157,6 +162,7 @@ class _AuthentificationIndexScreenState
                       showArrowFoward: false,
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
+                          //
 
                           Navigator.of(context).pushAndRemoveUntil(
                               MaterialPageRoute(
