@@ -45,6 +45,7 @@ dependencies:
   firebase_auth: ^3.3.6
   loading_indicator: ^3.0.2
   shared_preferences: ^2.0.13
+  get: ^4.6.1
 
 dev_dependencies:
   flutter_test:
