@@ -17,13 +17,12 @@ class _HomeState extends State<Home> {
       children: [
         const HomeWelcomeCard(
             welcomeText: 'welcome',
-            userName: 'User Name',
+            userName: 'name',
             imagePath: 'assets/images/moto.png'),
         const SizedBox(height: 40.0),
         HomeModuleCard(
             action: () {
               Navigator.of(context).pushNamed('/package_description');
-              
             },
             imagePath: 'assets/images/send.png',
             moduleName: 'Peer to peer Sending',

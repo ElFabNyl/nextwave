@@ -193,14 +193,8 @@ class _AuthentificationIndexScreenState
                                 var loggedUser =
                                     await Api.login(email, password);
 
-                                SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
-
-                                print('voiciiiiiiiiiiiiiiii ca ' +
-                                    prefs.getString('token').toString());
-
                                 setState(() {
-                                  showLoading = true;
+                                  showLoading = false;
                                 });
 
                                 Navigator.of(context).pushAndRemoveUntil(

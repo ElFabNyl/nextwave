@@ -30,6 +30,7 @@ class Api {
       //we keep the token of the user so as to keep him logged in
       //we will keep also his name to display it where need
       sharedPreferences.setString('token', jsonDecode(response.body)['token']);
+      sharedPreferences.setString('name', jsonDecode(response.body)['user']['last_name']);
       return User.fromJson(jsonDecode(response.body));
     } else {
       // If the server did not return a 201 CREATED response,
@@ -43,11 +44,15 @@ class Api {
   static Future<User> login(String email, String password) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
-    var url = Uri.parse(AppUrl.login + '/' + email + '/' + password);
-
-    final response = await http.get(url);
+    var url = Uri.parse(AppUrl.login);
+    var body = jsonEncode({
+      'email': email,
+      'password': password,
+    });
+    final response = await http.post(url, body: body, headers: AppUrl.headers);
     if (response.statusCode == 200) {
       sharedPreferences.setString('token', jsonDecode(response.body)['token']);
+      sharedPreferences.setString('name', jsonDecode(response.body)['user']['last_name']);
       return User.fromJson(jsonDecode(response.body));
     } else {
       throw Exception(response.body);
