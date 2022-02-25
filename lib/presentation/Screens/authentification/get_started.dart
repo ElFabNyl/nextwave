@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:nextwave/components/elevated_button.dart';
 import 'package:nextwave/index.dart';
 import 'package:nextwave/models/user.dart';
@@ -35,7 +34,7 @@ class _GetStartedState extends State<GetStarted> {
                 height: 20.0,
               ),
               const Text(
-                'Your account has been created successfuly. welcome on board',
+                'Your account has been created successfuly. Welcome on board',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Colors.grey,
@@ -46,7 +45,7 @@ class _GetStartedState extends State<GetStarted> {
                 height: 10.0,
               ),
 
-              // 
+              //
               //
               Text(
                 widget.incominguserRegistered.userName,
@@ -57,16 +56,17 @@ class _GetStartedState extends State<GetStarted> {
                 height: 40.0,
               ),
               DefaultElevatedButton(
-                  text: const Text('Get Started'),
-                  showArrowBack: false,
-                  showArrowFoward: false,
-                  onPressed: () {
-                    //he has to go to the next page with his name and the token
-                    Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute(
-                            builder: (BuildContext context) => const Index()),
-                        (route) => false);
-                  }),
+                text: const Text('Get Started'),
+                showArrowBack: false,
+                showArrowFoward: false,
+                onPressed: () {
+                  //he has to go to the next page with his name and the token
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => const Index()),
+                      (route) => false);
+                },
+              ),
             ],
           ),
         ),

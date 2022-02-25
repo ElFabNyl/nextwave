@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeWelcomeCard extends StatelessWidget {
   final String welcomeText;
-  final String userName;
+  final Widget userName;
   final String imagePath;
   const HomeWelcomeCard({
     Key? key,
@@ -33,11 +32,7 @@ class HomeWelcomeCard extends StatelessWidget {
                   welcomeText,
                   style: const TextStyle(fontSize: 16.0),
                 ),
-                Text(
-                  userName,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.w900, fontSize: 21.0),
-                )
+                userName
               ],
             ),
           ),

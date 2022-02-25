@@ -5,10 +5,7 @@ import 'package:nextwave/index.dart';
 import 'package:nextwave/models/user.dart';
 import 'package:nextwave/services/api_service.dart';
 import 'package:nextwave/services/email_validation_service.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:top_snackbar_flutter/custom_snack_bar.dart';
-import 'package:top_snackbar_flutter/tap_bounce_container.dart';
-import 'package:top_snackbar_flutter/top_snack_bar.dart';
+
 
 class AuthentificationIndexScreen extends StatefulWidget {
   const AuthentificationIndexScreen({Key? key}) : super(key: key);
@@ -190,8 +187,7 @@ class _AuthentificationIndexScreenState
                               });
                               if (_formKey.currentState!.validate()) {
                                 //
-                                var loggedUser =
-                                    await Api.login(email, password);
+                               await Api.login(email, password);
 
                                 setState(() {
                                   showLoading = false;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nextwave/components/home_module_card.dart';
 import 'package:nextwave/components/home_welcome_card.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
   Home({Key? key}) : super(key: key);
@@ -10,14 +11,53 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  late Future<String> _name;
+  Future<void> _getName() async {
+    final SharedPreferences prefs = await _prefs;
+    final String name = prefs.getString('name') ?? '';
+    setState(() {
+      _name = prefs.setString('name', name).then((bool success) {
+        return name;
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _name = _prefs.then((SharedPreferences prefs) {
+      return prefs.getString('name') ?? '';
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const HomeWelcomeCard(
+        HomeWelcomeCard(
             welcomeText: 'welcome',
-            userName: 'name',
+            userName: FutureBuilder<String>(
+                future: _name,
+                builder:
+                    (BuildContext context, AsyncSnapshot<String> snapshot) {
+                  switch (snapshot.connectionState) {
+                    case ConnectionState.waiting:
+                      return const CircularProgressIndicator();
+                    default:
+                      if (snapshot.hasError) {
+                        return const Text('');
+                      } else {
+                        return Text(
+                          ' ${snapshot.data}',
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w900, fontSize: 23.0),
+                        );
+                      }
+                  }
+                }),
             imagePath: 'assets/images/moto.png'),
         const SizedBox(height: 40.0),
         HomeModuleCard(
