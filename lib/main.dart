@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:nextwave/components/elevated_button.dart';
 import 'package:nextwave/index.dart';
 import 'package:nextwave/router/app_router.dart';
@@ -81,7 +82,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
         title: 'NextWafe',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(

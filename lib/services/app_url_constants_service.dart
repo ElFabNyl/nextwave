@@ -5,6 +5,9 @@ class AppUrl {
   };
 
   static const String baseUrl = 'https://nextwaveapi.communedebokito.com/api';
-  static  String login = baseUrl + '/login';
+  static const String login = baseUrl + '/login';
   static const String register = baseUrl + '/register';
+  static const String forgotPassword = baseUrl + '/forgot-password';
+  static const String resetPassword = baseUrl + '/reset-password';
+  static const String verifyOtp = baseUrl + '/verify-otp';
 }

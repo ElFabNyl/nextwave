@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:nextwave/components/elevated_button.dart';
 import 'package:nextwave/components/text_field.dart';
 import 'package:nextwave/index.dart';
 import 'package:nextwave/models/user.dart';
 import 'package:nextwave/services/api_service.dart';
 import 'package:nextwave/services/email_validation_service.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthentificationIndexScreen extends StatefulWidget {
   const AuthentificationIndexScreen({Key? key}) : super(key: key);
@@ -20,8 +21,6 @@ class _AuthentificationIndexScreenState
   //
   bool obscurePassword = true;
   //
-  late User loggedInUser;
-  //
   bool showLoading = false;
 
   //
@@ -31,6 +30,7 @@ class _AuthentificationIndexScreenState
 
   // Create a global key that uniquely identifies the Form widget
   final _formKey = GlobalKey<FormState>();
+  //
 
   @override
   Widget build(BuildContext context) {
@@ -182,22 +182,29 @@ class _AuthentificationIndexScreenState
                             showArrowBack: false,
                             showArrowFoward: false,
                             onPressed: () async {
-                              setState(() {
-                                showLoading = true;
-                              });
                               if (_formKey.currentState!.validate()) {
                                 //
-                               await Api.login(email, password);
-
                                 setState(() {
-                                  showLoading = false;
+                                  showLoading = true;
                                 });
+                                await Api.login(email, password);
 
-                                Navigator.of(context).pushAndRemoveUntil(
-                                    MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            const Index()),
-                                    (route) => false);
+                                SharedPreferences prefs =
+                                    await SharedPreferences.getInstance();
+                                if (prefs.getBool('status') == false) {
+                                  prefs.remove('status');
+                                  setState(() {
+                                    showLoading = false;
+                                  });
+                                  Get.offAll(
+                                       ()=> const AuthentificationIndexScreen());
+                                } else {
+                                  setState(() {
+                                    showLoading = false;
+                                  });
+
+                                  Get.offAll(()=> const Index());
+                                }
                               }
                             }),
                         const SizedBox(height: 15.0),

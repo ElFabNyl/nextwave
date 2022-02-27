@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:nextwave/models/user.dart';
 import 'package:nextwave/services/app_url_constants_service.dart';
@@ -30,7 +32,8 @@ class Api {
       //we keep the token of the user so as to keep him logged in
       //we will keep also his name to display it where need
       sharedPreferences.setString('token', jsonDecode(response.body)['token']);
-      sharedPreferences.setString('name', jsonDecode(response.body)['user']['last_name']);
+      sharedPreferences.setString(
+          'name', jsonDecode(response.body)['user']['last_name']);
       return User.fromJson(jsonDecode(response.body));
     } else {
       // If the server did not return a 201 CREATED response,
@@ -41,7 +44,7 @@ class Api {
 
   ///this function login an existing user to the app
   ///@params: email, password
-  static Future<User> login(String email, String password) async {
+  static Future<Object> login(String email, String password) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
     var url = Uri.parse(AppUrl.login);
@@ -52,10 +55,17 @@ class Api {
     final response = await http.post(url, body: body, headers: AppUrl.headers);
     if (response.statusCode == 200) {
       sharedPreferences.setString('token', jsonDecode(response.body)['token']);
-      sharedPreferences.setString('name', jsonDecode(response.body)['user']['last_name']);
+      sharedPreferences.setString(
+          'name', jsonDecode(response.body)['user']['last_name']);
       return User.fromJson(jsonDecode(response.body));
     } else {
-      throw Exception(response.body);
+      sharedPreferences.setBool('status', false);
+      return Get.snackbar("NEXTWAVE XPRESS NOTIFICATION",
+          "The user does not exist. Try again with good credentials!",
+          icon: const Icon(Icons.error, color: Colors.red),
+          snackPosition: SnackPosition.TOP,
+          duration: const Duration(seconds: 6));
+      // throw Exception(response.body);
     }
   }
 
@@ -68,6 +78,70 @@ class Api {
       return false;
     } else {
       return true;
+    }
+  }
+
+  ///this function is to reset the user password
+  ///@params: email, device type
+
+  static Future<Object> verifyEmail(String email) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    var url = Uri.parse(AppUrl.forgotPassword);
+    var body = jsonEncode({
+      'email': email,
+      'device': 'mobile',
+    });
+    final http.Response response =
+        await http.post(url, headers: AppUrl.headers, body: body);
+    if (response.statusCode == 200) {
+      return response.body;
+    } else {
+      sharedPreferences.setBool('status', false);
+      return Get.snackbar("NEXTWAVE XPRESS NOTIFICATION",
+          "Please, enter the email you used while registering !",
+          icon: const Icon(Icons.error, color: Colors.red),
+          snackPosition: SnackPosition.BOTTOM,
+          duration: const Duration(seconds: 7));
+      // throw Exception(response.body);
+    }
+  }
+
+  ///this function will check the OTP code that the use has received via email
+  ///to check the validity of the mail before the reset password process
+  ///@params: email, opt
+  static verifyOtpSendedByEmail(String email, String otpCode) async {
+    var url = Uri.parse(AppUrl.verifyOtp);
+    var body = jsonEncode({
+      'email': email,
+      'otp': otpCode,
+    });
+
+    final http.Response response =
+        await http.post(url, headers: AppUrl.headers, body: body);
+
+    if (response.statusCode == 200) {
+      return User.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception(response.body);
+    }
+  }
+
+  /// this function is to reset the password of a user after verification of his email
+  /// @params : email, new_password
+  ///
+  static resetPassword(String email, String newPassword) async {
+    var url = Uri.parse(AppUrl.resetPassword);
+    var body = jsonEncode({
+      'email': email,
+      'password': newPassword,
+      'device': 'mobile',
+    });
+    final http.Response response =
+        await http.post(url, headers: AppUrl.headers, body: body);
+    if (response.statusCode == 200) {
+      return User.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception(response.body);
     }
   }
 }
