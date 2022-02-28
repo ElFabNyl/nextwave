@@ -3,7 +3,9 @@ import 'package:get/get.dart';
 
 import 'package:nextwave/components/elevated_button.dart';
 import 'package:nextwave/components/text_field.dart';
+import 'package:nextwave/presentation/Screens/authentification/reset_password_new_password.dart';
 import 'package:nextwave/services/email_validation_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timer_count_down/timer_count_down.dart';
 
 import '../../../services/api_service_auth.dart';
@@ -26,7 +28,8 @@ class _ResetPasswordScreen2State extends State<ResetPasswordScreen2> {
   // Create a global key that uniquely identifies the Form widget
   final _formKey = GlobalKey<FormState>();
   //
-  String OtpCode = '';
+  String otpCode = '';
+  
 
   @override
   Widget build(BuildContext context) {
@@ -68,13 +71,12 @@ class _ResetPasswordScreen2State extends State<ResetPasswordScreen2> {
                   InputFormFieldWidget(
                       onChanged: (otp) {
                         setState(() {
-                          OtpCode = otp;
+                          otpCode = otp;
                         });
                       },
                       checkInput: (value) {
                         if (value == null ||
-                            value.isEmpty ||
-                            !EmailValidation.validateEmail(value)) {
+                            value.isEmpty ) {
                           return 'Invalid input';
                         }
                         return null;
@@ -118,8 +120,23 @@ class _ResetPasswordScreen2State extends State<ResetPasswordScreen2> {
                             showLoading = true;
                           });
 
-                          await AuthentificationApiService.verifyOtpSendedByEmail(widget.incomingEmail, OtpCode);
-
+                          await AuthentificationApiService
+                              .verifyOtpSendedByEmail(
+                                  widget.incomingEmail, otpCode);
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          if (prefs.getBool('status') == false) {
+                            prefs.remove('status');
+                            setState(() {
+                              showLoading = false;
+                            });
+                            Get.offAll(() => const ResetPasswordScreen1());
+                          } else {
+                            setState(() {
+                              showLoading = false;
+                            });
+                            Get.offAll(() =>  NewPassword(incomingEmail: widget.incomingEmail));
+                          }
                         }
                       })
                 ],

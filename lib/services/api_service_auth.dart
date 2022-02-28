@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -120,18 +119,19 @@ class AuthentificationApiService {
   ///to check the validity of the mail before the reset password process
   ///@params: email, opt
   static verifyOtpSendedByEmail(String email, String otpCode) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     var url = Uri.parse(AppUrl.verifyOtp);
     var body = jsonEncode({
       'email': email,
       'otp': otpCode,
     });
-
     final http.Response response =
         await http.post(url, headers: AppUrl.headers, body: body);
 
     if (response.statusCode == 200) {
-      return User.fromJson(jsonDecode(response.body));
+      return response.body;
     } else {
+      sharedPreferences.setBool('status', false);
       return Get.snackbar("NEXTWAVE XPRESS NOTIFICATION",
           "The verification code is invalid. Try later !",
           icon: const Icon(Icons.error, color: Colors.red),
@@ -154,9 +154,23 @@ class AuthentificationApiService {
     final http.Response response =
         await http.post(url, headers: AppUrl.headers, body: body);
     if (response.statusCode == 200) {
-      return User.fromJson(jsonDecode(response.body));
+      return Get.snackbar(
+          "NEXTWAVE XPRESS NOTIFICATION", "successfull password reset. you can connect with your new credential",
+          icon: const Icon(Icons.check, color: Colors.green),
+          snackPosition: SnackPosition.TOP,
+          duration: const Duration(seconds: 10));
     } else {
-      throw Exception(response.body);
+      SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
+      sharedPreferences.setBool('status', false);
+      return Get.snackbar(
+          "NEXTWAVE XPRESS NOTIFICATION", "an error has occured. Try later !",
+          icon: const Icon(Icons.error, color: Colors.red),
+          snackPosition: SnackPosition.BOTTOM,
+          duration: const Duration(seconds: 7));
     }
   }
+  /// this function is to connect the user using google
+  /// 
+  
 }
