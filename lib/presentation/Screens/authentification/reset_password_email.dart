@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:nextwave/components/elevated_button.dart';
 import 'package:nextwave/components/text_field.dart';
 import 'package:nextwave/presentation/Screens/authentification/reset_password_email_verification.dart';
-import 'package:nextwave/services/api_service.dart';
+import 'package:nextwave/services/api_service_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../services/email_validation_service.dart';
@@ -79,7 +79,8 @@ class _ResetPasswordScreen1State extends State<ResetPasswordScreen1> {
                                 setState(() {
                                   showLoading = true;
                                 });
-                                await Api.verifyEmail(email);
+                                await AuthentificationApiService.verifyEmail(
+                                    email);
                                 SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 if (prefs.getBool('status') == false) {
@@ -93,8 +94,8 @@ class _ResetPasswordScreen1State extends State<ResetPasswordScreen1> {
                                   setState(() {
                                     showLoading = false;
                                   });
-                                  Get.offAll(
-                                      () => const ResetPasswordScreen2());
+                                  Get.offAll(() => ResetPasswordScreen2(
+                                      incomingEmail: email));
                                 }
                               }
                             })

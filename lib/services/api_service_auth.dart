@@ -7,7 +7,7 @@ import 'package:nextwave/models/user.dart';
 import 'package:nextwave/services/app_url_constants_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class Api {
+class AuthentificationApiService {
   /// function that register the user to the DataBase through the API
   /// @params: userName, phone, email, password
   static Future<User> register(
@@ -81,7 +81,7 @@ class Api {
     }
   }
 
-  ///this function is to reset the user password
+  ///this function is to verify the email for the reset assword
   ///@params: email, device type
 
   static Future<Object> verifyEmail(String email) async {
@@ -93,12 +93,22 @@ class Api {
     });
     final http.Response response =
         await http.post(url, headers: AppUrl.headers, body: body);
-    if (response.statusCode == 200) {
+    //
+    if (response.statusCode == 200 && response.body.isNotEmpty) {
+      //
       return response.body;
-    } else {
+    } else if (response.statusCode == 200 && response.body.isEmpty) {
+      //
       sharedPreferences.setBool('status', false);
       return Get.snackbar("NEXTWAVE XPRESS NOTIFICATION",
           "Please, enter the email you used while registering !",
+          icon: const Icon(Icons.error, color: Colors.red),
+          snackPosition: SnackPosition.BOTTOM,
+          duration: const Duration(seconds: 7));
+    } else {
+      //
+      return Get.snackbar("NEXTWAVE XPRESS NOTIFICATION",
+          "An error has occured! Please try later",
           icon: const Icon(Icons.error, color: Colors.red),
           snackPosition: SnackPosition.BOTTOM,
           duration: const Duration(seconds: 7));
@@ -122,7 +132,12 @@ class Api {
     if (response.statusCode == 200) {
       return User.fromJson(jsonDecode(response.body));
     } else {
-      throw Exception(response.body);
+      return Get.snackbar("NEXTWAVE XPRESS NOTIFICATION",
+          "The verification code is invalid. Try later !",
+          icon: const Icon(Icons.error, color: Colors.red),
+          snackPosition: SnackPosition.BOTTOM,
+          duration: const Duration(seconds: 7));
+      // throw Exception(response.body);
     }
   }
 

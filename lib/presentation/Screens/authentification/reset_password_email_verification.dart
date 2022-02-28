@@ -1,15 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 import 'package:nextwave/components/elevated_button.dart';
 import 'package:nextwave/components/text_field.dart';
+import 'package:nextwave/services/email_validation_service.dart';
+import 'package:timer_count_down/timer_count_down.dart';
+
+import '../../../services/api_service_auth.dart';
+import 'reset_password_email.dart';
 
 class ResetPasswordScreen2 extends StatefulWidget {
-  const ResetPasswordScreen2({ Key? key }) : super(key: key);
+  final String incomingEmail;
+  const ResetPasswordScreen2({
+    Key? key,
+    required this.incomingEmail,
+  }) : super(key: key);
 
   @override
   _ResetPasswordScreen2State createState() => _ResetPasswordScreen2State();
 }
 
 class _ResetPasswordScreen2State extends State<ResetPasswordScreen2> {
+  //
+  bool showLoading = false;
+  // Create a global key that uniquely identifies the Form widget
+  final _formKey = GlobalKey<FormState>();
+  //
+  String OtpCode = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,48 +42,88 @@ class _ResetPasswordScreen2State extends State<ResetPasswordScreen2> {
           child: Padding(
             padding:
                 const EdgeInsets.symmetric(horizontal: 15.0, vertical: 40.0),
-            child: Column(
-              children: [
-                const Text(
-                  'PASSWORD RESET',
-                  style: TextStyle(fontWeight: FontWeight.w700, fontSize: 22.0),
-                ),
-                const SizedBox(
-                  height: 40.0,
-                ),
-                const Text(
-                  'Please check your emails and fill the input bellow',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16.0),
-                ),
-                const SizedBox(
-                  height: 20.0,
-                ),
-                const InputFormFieldWidget(hintText: 'Enter the  code received '),
-                const SizedBox(height: 5.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: const [
-                    Text(
-                      '00:30',
-                      style: TextStyle(
-                          color: Colors.grey, fontWeight: FontWeight.w700),
-                    )
-                  ],
-                ),
-                const SizedBox(height: 50.0),
-                DefaultElevatedButton(
-                    text: const Text('Proceed'),
-                    showArrowBack: false,
-                    showArrowFoward: false,
-                    onPressed: () {
-                      //
-                      
-                    })
-              ],
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  const Text(
+                    'PASSWORD RESET',
+                    style:
+                        TextStyle(fontWeight: FontWeight.w700, fontSize: 22.0),
+                  ),
+                  const SizedBox(
+                    height: 40.0,
+                  ),
+                  const Text(
+                    'Please check your emails and fill the input bellow',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 16.0),
+                  ),
+                  const SizedBox(
+                    height: 20.0,
+                  ),
+                  InputFormFieldWidget(
+                      onChanged: (otp) {
+                        setState(() {
+                          OtpCode = otp;
+                        });
+                      },
+                      checkInput: (value) {
+                        if (value == null ||
+                            value.isEmpty ||
+                            !EmailValidation.validateEmail(value)) {
+                          return 'Invalid input';
+                        }
+                        return null;
+                      },
+                      hintText: 'Enter the  code received '),
+                  const SizedBox(height: 5.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Countdown(
+                        seconds: 60,
+                        build: (BuildContext context, double time) => Text(
+                            time.toString(),
+                            style: const TextStyle(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.w900)),
+                        interval: const Duration(milliseconds: 100),
+                        onFinished: () {
+                          //if the time ends without him filling the input, we tell him that
+                          //the time is over and send him back
+
+                          Get.snackbar("NEXTWAVE XPRESS NOTIFICATION",
+                              "Time out !  Try later",
+                              icon: const Icon(Icons.error, color: Colors.red),
+                              snackPosition: SnackPosition.BOTTOM,
+                              duration: const Duration(seconds: 7));
+                          Get.offAll(const ResetPasswordScreen1());
+                        },
+                      )
+                    ],
+                  ),
+                  const SizedBox(height: 50.0),
+                  DefaultElevatedButton(
+                      text: const Text('Proceed'),
+                      showArrowBack: false,
+                      showArrowFoward: false,
+                      onPressed: () async {
+                        //
+                        if (_formKey.currentState!.validate()) {
+                          setState(() {
+                            showLoading = true;
+                          });
+
+                          await AuthentificationApiService.verifyOtpSendedByEmail(widget.incomingEmail, OtpCode);
+
+                        }
+                      })
+                ],
+              ),
             ),
           ),
         ),

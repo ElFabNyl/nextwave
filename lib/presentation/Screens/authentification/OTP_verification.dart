@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:loading_indicator/loading_indicator.dart';
+import 'package:get/get.dart';
 import 'package:timer_count_down/timer_count_down.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
@@ -104,7 +103,7 @@ class _OTPVerificationState extends State<OTPVerification> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Countdown(
-                              seconds: 90,
+                              seconds: 60,
                               build: (BuildContext context, double time) =>
                                   Text(time.toString(),
                                       style: const TextStyle(
@@ -112,14 +111,15 @@ class _OTPVerificationState extends State<OTPVerification> {
                                           fontWeight: FontWeight.w900)),
                               interval: const Duration(milliseconds: 100),
                               onFinished: () {
-                                //if the time ends without him filling the input, we tell him that the time is over and send him back
+                                //if the time ends without him filling the input, we tell him that 
+                                //the time is over and send him back
 
-                                showTopSnackBar(
-                                  context,
-                                  const CustomSnackBar.error(
-                                    message: "Waiting time expired... ",
-                                  ),
-                                );
+                                Get.snackbar("NEXTWAVE XPRESS NOTIFICATION",
+                                    "Time out !  Try later",
+                                    icon: const Icon(Icons.error,
+                                        color: Colors.red),
+                                    snackPosition: SnackPosition.TOP,
+                                    duration: const Duration(seconds: 7));
                                 Navigator.of(context).pop();
                               },
                             )

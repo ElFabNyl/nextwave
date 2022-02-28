@@ -3,8 +3,7 @@ import 'package:get/get.dart';
 import 'package:nextwave/components/elevated_button.dart';
 import 'package:nextwave/components/text_field.dart';
 import 'package:nextwave/index.dart';
-import 'package:nextwave/models/user.dart';
-import 'package:nextwave/services/api_service.dart';
+import 'package:nextwave/services/api_service_auth.dart';
 import 'package:nextwave/services/email_validation_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -187,7 +186,7 @@ class _AuthentificationIndexScreenState
                                 setState(() {
                                   showLoading = true;
                                 });
-                                await Api.login(email, password);
+                                await AuthentificationApiService.login(email, password);
 
                                 SharedPreferences prefs =
                                     await SharedPreferences.getInstance();

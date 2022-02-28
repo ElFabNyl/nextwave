@@ -6,7 +6,7 @@ import 'package:nextwave/components/elevated_button.dart';
 import 'package:nextwave/models/user.dart';
 import 'package:nextwave/presentation/Screens/authentification/auth_index.dart';
 import 'package:nextwave/presentation/Screens/authentification/get_started.dart';
-import 'package:nextwave/services/api_service.dart';
+import 'package:nextwave/services/api_service_auth.dart';
 
 class TermsAndPolicy extends StatefulWidget {
   final String incomingEmail;
@@ -104,7 +104,7 @@ class _TermsAndPolicyState extends State<TermsAndPolicy> {
                               showLoading = true;
                             });
 
-                            userRegistered = await (Api.register(
+                            userRegistered = await (AuthentificationApiService.register(
                               widget.incomingName,
                               widget.incomingPhone,
                               widget.incomingEmail,

@@ -55,8 +55,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const SplashScreen());
       case '/resetPassword1':
         return MaterialPageRoute(builder: (_) => const ResetPasswordScreen1());
-      case '/resetPassword2':
-        return MaterialPageRoute(builder: (_) => const ResetPasswordScreen2());
+      // case '/resetPassword2':
+      //   return MaterialPageRoute(builder: (_) => const ResetPasswordScreen2());
       default:
         return null;
     }
