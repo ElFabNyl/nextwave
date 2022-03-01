@@ -51,7 +51,7 @@ class _HomeState extends State<Home> {
                         return const Text('');
                       } else {
                         return Text(
-                          ' ${snapshot.data}',
+                          '${snapshot.data}',
                           style: const TextStyle(
                               fontWeight: FontWeight.w900, fontSize: 23.0),
                         );

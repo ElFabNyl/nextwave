@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:nextwave/components/elevated_button.dart';
 import 'package:nextwave/index.dart';
 import 'package:nextwave/models/user.dart';
+import 'package:nextwave/presentation/Screens/no_data.dart';
 
 class GetStarted extends StatefulWidget {
   final User incominguserRegistered;
@@ -61,10 +63,12 @@ class _GetStartedState extends State<GetStarted> {
                 showArrowFoward: false,
                 onPressed: () {
                   //he has to go to the next page with his name and the token
-                  Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => const Index()),
-                      (route) => false);
+                  // Navigator.of(context).pushAndRemoveUntil(
+                  //     MaterialPageRoute(
+                  //         builder: (BuildContext context) => const Index()),
+                  //     (route) => false);
+
+                  Get.offAll(()=>const NoData());
                 },
               ),
             ],

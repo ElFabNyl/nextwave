@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:nextwave/components/elevated_button.dart';
 import 'package:nextwave/components/text_field.dart';
 import 'package:nextwave/presentation/Screens/authentification/reset_password_new_password.dart';
-import 'package:nextwave/services/email_validation_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timer_count_down/timer_count_down.dart';
 

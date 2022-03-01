@@ -5,7 +5,10 @@ import 'package:nextwave/components/text_field.dart';
 import 'package:nextwave/index.dart';
 import 'package:nextwave/services/api_service_auth.dart';
 import 'package:nextwave/services/email_validation_service.dart';
+import 'package:nextwave/services/google_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../no_data.dart';
 
 class AuthentificationIndexScreen extends StatefulWidget {
   const AuthentificationIndexScreen({Key? key}) : super(key: key);
@@ -57,8 +60,19 @@ class _AuthentificationIndexScreenState
                         ),
                         const SizedBox(height: 16.0),
                         ElevatedButton(
-                          onPressed: () {
+                          onPressed: () async {
+                            setState(() {
+                              showLoading = true;
+                            });
                             //an action should be performed here
+
+                            await GoogleAuth.signInWithGoogle();
+                            setState(() {
+                              showLoading = false;
+                            });
+
+                            // Get.off(() => const Index());
+                            Get.offAll(() => const NoData());
                           },
                           style: ButtonStyle(
                             padding:
@@ -186,7 +200,8 @@ class _AuthentificationIndexScreenState
                                 setState(() {
                                   showLoading = true;
                                 });
-                                await AuthentificationApiService.login(email, password);
+                                await AuthentificationApiService.login(
+                                    email, password);
 
                                 SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
@@ -195,14 +210,15 @@ class _AuthentificationIndexScreenState
                                   setState(() {
                                     showLoading = false;
                                   });
-                                  Get.offAll(
-                                       ()=> const AuthentificationIndexScreen());
+                                  Get.offAll(() =>
+                                      const AuthentificationIndexScreen());
                                 } else {
                                   setState(() {
                                     showLoading = false;
                                   });
 
-                                  Get.offAll(()=> const Index());
+                                  // Get.offAll(() => const Index());
+                                  Get.offAll(() => const NoData());
                                 }
                               }
                             }),
