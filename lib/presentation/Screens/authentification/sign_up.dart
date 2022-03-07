@@ -41,7 +41,8 @@ class _SignUpState extends State<SignUp> {
                   const SizedBox(height: 16.0),
                   ElevatedButton(
                     onPressed: () {
-                      //an action should be performed here
+                      ///an action should be performed here
+                      ///to sign up using google
                     },
                     style: ButtonStyle(
                       padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
@@ -84,6 +85,8 @@ class _SignUpState extends State<SignUp> {
                   ),
                   const SizedBox(height: 10.0),
                   InputFormFieldWidget(
+                    isEmailInput: true,
+                    isnumberInput: false,
                     prefixIcon: const Icon(
                       Icons.email,
                       color: Colors.grey,
@@ -106,6 +109,8 @@ class _SignUpState extends State<SignUp> {
                   ),
                   const SizedBox(height: 10.0),
                   InputFormFieldWidget(
+                    isnumberInput: false,
+                    isEmailInput: false,
                     prefixIcon: const Icon(
                       Icons.lock,
                       color: Colors.grey,

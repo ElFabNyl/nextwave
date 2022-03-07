@@ -33,7 +33,10 @@ class _PackageDescriptionState extends State<PackageDescription> {
                   style: TextStyle(fontWeight: FontWeight.w900, fontSize: 22.0),
                 ),
                 const SizedBox(height: 30.0),
-                const InputFormFieldWidget(hintText: 'Describe the package'),
+                const InputFormFieldWidget(
+                    isEmailInput: false,
+                    isnumberInput: false,
+                    hintText: 'Describe the package'),
                 const SizedBox(height: 15.0),
                 const Divider(color: Colors.grey),
                 const SizedBox(height: 15.0),
@@ -41,8 +44,8 @@ class _PackageDescriptionState extends State<PackageDescription> {
                   children: [
                     const Text(
                       'Dimenssion',
-                      style:
-                          TextStyle(fontWeight: FontWeight.w900, fontSize: 17.0),
+                      style: TextStyle(
+                          fontWeight: FontWeight.w900, fontSize: 17.0),
                     ),
                     const SizedBox(width: 8.0),
                     GestureDetector(
@@ -74,13 +77,25 @@ class _PackageDescriptionState extends State<PackageDescription> {
                   ],
                 ),
                 const SizedBox(height: 20.0),
-                const InputFormFieldWidget(hintText: 'Enter Lenght in cm'),
+                const InputFormFieldWidget(
+                    isEmailInput: false,
+                    isnumberInput: true,
+                    hintText: 'Enter Lenght in cm'),
                 const SizedBox(height: 20.0),
-                const InputFormFieldWidget(hintText: 'Enter width in cm'),
+                const InputFormFieldWidget(
+                    isEmailInput: false,
+                    isnumberInput: true,
+                    hintText: 'Enter width in cm'),
                 const SizedBox(height: 20.0),
-                const InputFormFieldWidget(hintText: 'Enter Height in cm'),
+                const InputFormFieldWidget(
+                    isEmailInput: false,
+                    isnumberInput: true,
+                    hintText: 'Enter Height in cm'),
                 const SizedBox(height: 20.0),
-                const InputFormFieldWidget(hintText: 'Enter weight in grams'),
+                const InputFormFieldWidget(
+                    isEmailInput: false,
+                    isnumberInput: true,
+                    hintText: 'Enter weight in grams'),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.15),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,

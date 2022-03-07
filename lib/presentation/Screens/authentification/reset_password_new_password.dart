@@ -53,6 +53,8 @@ class _NewPasswordState extends State<NewPassword> {
                         const SizedBox(height: 15.0),
                
                         InputFormFieldWidget(
+                          isEmailInput: false,
+                          isnumberInput: false,
                           hintText: 'Enter your new password',
                           obscureText: true,
                           onChanged: (input) {

@@ -62,6 +62,8 @@ class _SignUpUserInfosState extends State<SignUpUserInfos> {
                         Image.asset('assets/images/user_infos.png'),
                         const SizedBox(height: 20.0),
                         InputFormFieldWidget(
+                          isEmailInput: false,
+                          isnumberInput: false,
                           prefixIcon: const Icon(
                             Icons.person,
                             color: Colors.grey,
@@ -81,6 +83,8 @@ class _SignUpUserInfosState extends State<SignUpUserInfos> {
                         ),
                         const SizedBox(height: 20.0),
                         InputFormFieldWidget(
+                          isEmailInput: false,
+                          isnumberInput: false,
                           prefixIcon: const Icon(
                             Icons.phone,
                             color: Colors.grey,
@@ -95,6 +99,9 @@ class _SignUpUserInfosState extends State<SignUpUserInfos> {
                               return 'Invalid input';
                             } else if (value.length < 9) {
                               return 'incorrect phone number';
+                            }else if (value.length>14){
+                              return 'invalid number, consider removing the country code';
+
                             }
                             return null;
                           },

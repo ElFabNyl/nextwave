@@ -117,6 +117,8 @@ class _AuthentificationIndexScreenState
                         ),
                         const SizedBox(height: 10.0),
                         InputFormFieldWidget(
+                          isEmailInput: true,
+                          isnumberInput: false,
                           onChanged: (inputEmail) {
                             setState(() {
                               email = inputEmail;
@@ -138,6 +140,8 @@ class _AuthentificationIndexScreenState
                         ),
                         const SizedBox(height: 10.0),
                         InputFormFieldWidget(
+                          isnumberInput: false,
+                          isEmailInput: false,
                           onChanged: (inputPwd) {
                             setState(() {
                               password = inputPwd;

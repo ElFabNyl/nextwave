@@ -68,6 +68,8 @@ class _ResetPasswordScreen2State extends State<ResetPasswordScreen2> {
                     height: 20.0,
                   ),
                   InputFormFieldWidget(
+                    isEmailInput: false,
+                    isnumberInput: true,
                       onChanged: (otp) {
                         setState(() {
                           otpCode = otp;

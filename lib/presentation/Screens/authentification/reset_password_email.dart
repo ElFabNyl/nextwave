@@ -52,6 +52,8 @@ class _ResetPasswordScreen1State extends State<ResetPasswordScreen1> {
                         ),
                         const SizedBox(height: 15.0),
                         InputFormFieldWidget(
+                          isEmailInput: true,
+                          isnumberInput: false,
                           hintText: 'Enter your registration  email',
                           onChanged: (input) {
                             setState(() {

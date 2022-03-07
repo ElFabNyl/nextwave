@@ -85,6 +85,8 @@ class _OTPVerificationState extends State<OTPVerification> {
                           height: 20.0,
                         ),
                         InputFormFieldWidget(
+                          isnumberInput: true,
+                          isEmailInput: false,
                           hintText: 'Enter the OTP Code',
                           onChanged: (inputOTP) {
                             //

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class InputFormFieldWidget extends StatelessWidget {
+  final bool isnumberInput;
+  final bool isEmailInput;
   final String? hintText;
   final Function(String)? onChanged;
   final Icon? prefixIcon;
@@ -11,6 +13,8 @@ class InputFormFieldWidget extends StatelessWidget {
 
   const InputFormFieldWidget({
     Key? key,
+    required this.isnumberInput,
+    required this.isEmailInput,
     this.hintText,
     this.onChanged,
     this.prefixIcon,
@@ -30,6 +34,11 @@ class InputFormFieldWidget extends StatelessWidget {
       obscureText: obscureText,
       onChanged: onChanged,
       focusNode: focusNode,
+      keyboardType: isnumberInput
+          ? TextInputType.phone
+          : isEmailInput
+              ? TextInputType.emailAddress
+              : TextInputType.text,
       decoration: InputDecoration(
         hintText: hintText,
         labelStyle: const TextStyle(color: Colors.grey),

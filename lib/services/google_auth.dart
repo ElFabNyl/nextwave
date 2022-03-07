@@ -5,7 +5,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class GoogleAuth {
- static Future<Object?> signInWithGoogle() async {
+  static Future<Object?> signInWithGoogle() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     FirebaseAuth auth = FirebaseAuth.instance;
     User? user;
@@ -25,7 +25,6 @@ class GoogleAuth {
       );
 
       try {
-        
         final UserCredential userCredential =
             await auth.signInWithCredential(credential);
 
@@ -33,30 +32,37 @@ class GoogleAuth {
       } on FirebaseAuthException catch (e) {
         if (e.code == 'account-exists-with-different-credential') {
           // handle the error here
-          return Get.snackbar(
-          "NEXTWAVE XPRESS NOTIFICATION", "account-exists-with-different-credential",
-          icon: const Icon(Icons.error, color: Colors.red),
-          snackPosition: SnackPosition.BOTTOM,
-          duration: const Duration(seconds: 7));
-        }
-        else if (e.code == 'invalid-credential') {
+          return Get.snackbar("NEXTWAVE XPRESS NOTIFICATION",
+              "account-exists-with-different-credential",
+              icon: const Icon(Icons.error, color: Colors.red),
+              snackPosition: SnackPosition.BOTTOM,
+              duration: const Duration(seconds: 7));
+        } else if (e.code == 'invalid-credential') {
           // handle the error here
-          Get.snackbar(
-          "NEXTWAVE XPRESS NOTIFICATION", "invalid-credential",
-          icon: const Icon(Icons.error, color: Colors.red),
-          snackPosition: SnackPosition.BOTTOM,
-          duration: const Duration(seconds: 7));
+          Get.snackbar("NEXTWAVE XPRESS NOTIFICATION", "invalid-credential",
+              icon: const Icon(Icons.error, color: Colors.red),
+              snackPosition: SnackPosition.BOTTOM,
+              duration: const Duration(seconds: 7));
         }
       } catch (e) {
         // handle the error here
-         Get.snackbar(
-          "NEXTWAVE XPRESS NOTIFICATION", "an error has occured! try later",
-          icon: const Icon(Icons.error, color: Colors.red),
-          snackPosition: SnackPosition.BOTTOM,
-          duration: const Duration(seconds: 7));
+        Get.snackbar(
+            "NEXTWAVE XPRESS NOTIFICATION", "an error has occured! try later",
+            icon: const Icon(Icons.error, color: Colors.red),
+            snackPosition: SnackPosition.BOTTOM,
+            duration: const Duration(seconds: 7));
       }
     }
     sharedPreferences.setString('name', user!.displayName.toString());
+
+    /// before the retrurn i should send the google user infos to the api, collect the registration token and store it in
+    /// sharedPreference, to keep him logged in
+    ///
+    Get.snackbar(
+        "NEXTWAVE XPRESS NOTIFICATION", "your account had been created successfully !",
+        icon: const Icon(Icons.check, color: Colors.green),
+        snackPosition: SnackPosition.BOTTOM,
+        duration: const Duration(seconds: 4));
     return user.displayName;
   }
 }

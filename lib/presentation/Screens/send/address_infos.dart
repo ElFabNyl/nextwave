@@ -37,12 +37,16 @@ class _AddressState extends State<Address> {
                 ),
                 const SizedBox(height: 30.0),
                 const InputFormFieldWidget(
+                  isEmailInput: false,
+                  isnumberInput: false,
                   hintText: 'Enter the pickup address',
                   prefixIcon:
                       Icon(FontAwesomeIcons.mapMarker, color: Colors.grey),
                 ),
                 const SizedBox(height: 20.0),
                 const InputFormFieldWidget(
+                  isEmailInput: false,
+                  isnumberInput: false,
                   hintText: 'Enter destination address',
                   prefixIcon:
                       Icon(FontAwesomeIcons.mapMarker, color: Colors.grey),
@@ -56,7 +60,8 @@ class _AddressState extends State<Address> {
                         child: const Text(
                           'Detect my location',
                           style: TextStyle(
-                              color: Color(0xff034AB4) , fontWeight: FontWeight.w800),
+                              color: Color(0xff034AB4),
+                              fontWeight: FontWeight.w800),
                         ))
                   ],
                 ),
@@ -64,21 +69,29 @@ class _AddressState extends State<Address> {
                 const Divider(color: Colors.grey),
                 const SizedBox(height: 10.0),
                 const InputFormFieldWidget(
+                  isEmailInput: false,
+                  isnumberInput: false,
                   hintText: 'Sender’s name',
                   prefixIcon: Icon(Icons.person, color: Colors.grey),
                 ),
                 const SizedBox(height: 20.0),
                 const InputFormFieldWidget(
+                  isEmailInput: false,
+                  isnumberInput: true,
                   hintText: 'Sender’s phone number',
                   prefixIcon: Icon(Icons.phone, color: Colors.grey),
                 ),
                 const SizedBox(height: 20.0),
                 const InputFormFieldWidget(
+                  isEmailInput: false,
+                  isnumberInput: false,
                   hintText: 'Receiver’s name',
                   prefixIcon: Icon(Icons.person, color: Colors.grey),
                 ),
                 const SizedBox(height: 20.0),
                 const InputFormFieldWidget(
+                  isEmailInput: false,
+                  isnumberInput: true,
                   hintText: 'Receiver’s phone number',
                   prefixIcon: Icon(Icons.phone, color: Colors.grey),
                 ),
