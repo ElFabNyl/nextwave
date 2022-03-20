@@ -84,7 +84,7 @@ class _SignUpUserInfosState extends State<SignUpUserInfos> {
                         const SizedBox(height: 20.0),
                         InputFormFieldWidget(
                           isEmailInput: false,
-                          isnumberInput: false,
+                          isnumberInput: true,
                           prefixIcon: const Icon(
                             Icons.phone,
                             color: Colors.grey,

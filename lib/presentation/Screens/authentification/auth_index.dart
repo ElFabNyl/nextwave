@@ -71,8 +71,7 @@ class _AuthentificationIndexScreenState
                               showLoading = false;
                             });
 
-                            // Get.off(() => const Index());
-                            Get.offAll(() => const NoData());
+                            Get.offAll(() => const Index());
                           },
                           style: ButtonStyle(
                             padding:
@@ -221,8 +220,7 @@ class _AuthentificationIndexScreenState
                                     showLoading = false;
                                   });
 
-                                  // Get.offAll(() => const Index());
-                                  Get.offAll(() => const NoData());
+                                  Get.offAll(() => const Index());
                                 }
                               }
                             }),

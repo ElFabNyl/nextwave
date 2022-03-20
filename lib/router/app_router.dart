@@ -4,11 +4,11 @@ import 'package:nextwave/presentation/Screens/authentification/auth_index.dart';
 import 'package:nextwave/presentation/Screens/authentification/reset_password_email.dart';
 import 'package:nextwave/presentation/Screens/authentification/sign_up.dart';
 import 'package:nextwave/presentation/Screens/authentification/splash.dart';
-import 'package:nextwave/presentation/Screens/send/address_infos.dart';
+import 'package:nextwave/presentation/Screens/send/address_infos/address_infos_screen.dart';
 import 'package:nextwave/presentation/Screens/send/billing.dart';
 import 'package:nextwave/presentation/Screens/send/confirmation.dart';
 import 'package:nextwave/presentation/Screens/send/delivery_details.dart';
-import 'package:nextwave/presentation/Screens/send/package_description.dart';
+import 'package:nextwave/presentation/Screens/send/packages_description/package_description_screen.dart';
 import 'package:nextwave/presentation/Screens/send/terms_and_cond.dart';
 
 class AppRouter {

@@ -6,6 +6,8 @@ import 'package:nextwave/models/user.dart';
 import 'package:nextwave/services/app_url_constants_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../presentation/Screens/authentification/auth_index.dart';
+
 class AuthentificationApiService {
   /// function that register the user to the DataBase through the API
   /// @params: userName, phone, email, password
@@ -32,10 +34,17 @@ class AuthentificationApiService {
       //we will keep also his name to display it where need
       sharedPreferences.remove('token');
       sharedPreferences.setString('token', jsonDecode(response.body)['token']);
+      sharedPreferences.remove('name');
       sharedPreferences.setString(
           'name', jsonDecode(response.body)['user']['last_name']);
       return User.fromJson(jsonDecode(response.body));
     } else {
+      Get.snackbar("NEXTWAVE XPRESS NOTIFICATION",
+          "this account is already used! or there is a connexion problem. please try later!",
+          icon: const Icon(Icons.info, color: Colors.red),
+          snackPosition: SnackPosition.BOTTOM,
+          duration: const Duration(seconds: 5));
+      Get.offAll(() => const AuthentificationIndexScreen());
       // If the server did not return a 201 CREATED response,
       // then throw an exception.
       throw Exception(response.body);
@@ -156,8 +165,8 @@ class AuthentificationApiService {
     final http.Response response =
         await http.post(url, headers: AppUrl.headers, body: body);
     if (response.statusCode == 200) {
-      return Get.snackbar(
-          "NEXTWAVE XPRESS NOTIFICATION", "successfull password reset. you can connect with your new credential",
+      return Get.snackbar("NEXTWAVE XPRESS NOTIFICATION",
+          "successfull password reset. you can connect with your new credential",
           icon: const Icon(Icons.check, color: Colors.green),
           snackPosition: SnackPosition.TOP,
           duration: const Duration(seconds: 10));
@@ -172,7 +181,8 @@ class AuthentificationApiService {
           duration: const Duration(seconds: 7));
     }
   }
+
   /// this function is to connect the user using google
-  /// 
-  
+  ///
+
 }

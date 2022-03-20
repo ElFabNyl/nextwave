@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'api_service_auth.dart';
+
 class GoogleAuth {
   static Future<Object?> signInWithGoogle() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
@@ -53,13 +55,14 @@ class GoogleAuth {
             duration: const Duration(seconds: 7));
       }
     }
-    sharedPreferences.setString('name', user!.displayName.toString());
 
-    /// before the retrurn i should send the google user infos to the api, collect the registration token and store it in
+    /// before the retrurn we should send the google user infos to the api, collect the registration token and store it in
     /// sharedPreference, to keep him logged in
-    ///
-    Get.snackbar(
-        "NEXTWAVE XPRESS NOTIFICATION", "your account had been created successfully !",
+    await AuthentificationApiService.register(user!.displayName.toString(),
+        user.phoneNumber.toString(), user.email.toString(), 'password');
+
+    Get.snackbar("NEXTWAVE XPRESS NOTIFICATION",
+        "your account had been created successfully !",
         icon: const Icon(Icons.check, color: Colors.green),
         snackPosition: SnackPosition.BOTTOM,
         duration: const Duration(seconds: 4));
