@@ -5,11 +5,11 @@ import 'package:nextwave/presentation/Screens/authentification/reset_password_em
 import 'package:nextwave/presentation/Screens/authentification/sign_up.dart';
 import 'package:nextwave/presentation/Screens/authentification/splash.dart';
 import 'package:nextwave/presentation/Screens/send/address_infos/address_infos_screen.dart';
-import 'package:nextwave/presentation/Screens/send/billing.dart';
-import 'package:nextwave/presentation/Screens/send/confirmation.dart';
-import 'package:nextwave/presentation/Screens/send/delivery_details.dart';
+import 'package:nextwave/presentation/Screens/send/billing/billing_screen.dart';
+import 'package:nextwave/presentation/Screens/send/confirmation/confirmation.dart';
+import 'package:nextwave/presentation/Screens/send/delivery_details/delivery_details_screen.dart';
 import 'package:nextwave/presentation/Screens/send/packages_description/package_description_screen.dart';
-import 'package:nextwave/presentation/Screens/send/terms_and_cond.dart';
+import 'package:nextwave/presentation/Screens/send/terms_and_conditions/terms_and_cond.dart';
 
 class AppRouter {
   Route<dynamic>? onGenerateRoute(RouteSettings routeSettings) {

@@ -41,7 +41,7 @@ class _MyAppState extends State<MyApp> {
       if (_rateMyApp.shouldOpenDialog) {
         _rateMyApp.showStarRateDialog(
           context,
-          title: 'NEXT WAVE',
+          title: 'nextWave',
           message: 'Please rate the app',
           starRatingOptions:
               const StarRatingOptions(), // Custom star bar rating options.
