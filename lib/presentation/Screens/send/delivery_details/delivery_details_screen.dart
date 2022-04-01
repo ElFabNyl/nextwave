@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'package:nextwave/components/app_bar.dart';
 import 'package:nextwave/components/delivery_path_details.dart';
@@ -12,6 +15,7 @@ class DeliveryDetails extends StatefulWidget {
 }
 
 class _DeliveryDetailsState extends State<DeliveryDetails> {
+  final Completer<GoogleMapController> _controller = Completer();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,10 +31,20 @@ class _DeliveryDetailsState extends State<DeliveryDetails> {
         padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
         child: Column(
           children: [
-            Container(
+            SizedBox(
               height: MediaQuery.of(context).size.height * 0.4,
               width: double.infinity,
-              color: Colors.grey,
+              child: GoogleMap(
+                mapToolbarEnabled: true,
+                mapType: MapType.normal,
+                initialCameraPosition: const CameraPosition(
+                  target: LatLng(37.42796133580664, -122.085749655962),
+                  zoom: 14.4746,
+                ),
+                onMapCreated: (GoogleMapController controller) {
+                  _controller.complete(controller);
+                },
+              ),
             ),
             const SizedBox(height: 15.0),
             Padding(
