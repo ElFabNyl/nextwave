@@ -16,6 +16,12 @@ class DeliveryDetails extends StatefulWidget {
 
 class _DeliveryDetailsState extends State<DeliveryDetails> {
   final Completer<GoogleMapController> _controller = Completer();
+  static final Marker _kGoogPlexMaker =  Marker(
+    markerId: MarkerId('_kGoogPlexMaker'),
+    infoWindow: InfoWindow(title: 'Pickup position'),
+    icon: BitmapDescriptor.defaultMarker,
+    position: LatLng(37.42796133580664, -122.085749655962),
+  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,6 +41,7 @@ class _DeliveryDetailsState extends State<DeliveryDetails> {
               height: MediaQuery.of(context).size.height * 0.4,
               width: double.infinity,
               child: GoogleMap(
+                markers: {},
                 mapToolbarEnabled: true,
                 mapType: MapType.normal,
                 initialCameraPosition: const CameraPosition(
