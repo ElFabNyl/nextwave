@@ -239,7 +239,9 @@ class _AuthentificationIndexScreenState
                               },
                               child: const Text(
                                 'Signup',
-                                style: TextStyle(color: Color(0xff1960CC)),
+                                style: TextStyle(
+                                  color: Color(0xff1960CC),
+                                ),
                               ),
                             )
                           ],
