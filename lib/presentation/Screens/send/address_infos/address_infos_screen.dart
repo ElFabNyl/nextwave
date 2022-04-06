@@ -98,19 +98,21 @@ class _AddressState extends State<Address> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     DefaultElevatedButton(
-                        text: const Text('Back'),
-                        showArrowBack: true,
-                        showArrowFoward: false,
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        }),
+                      text: const Text('Back'),
+                      showArrowBack: true,
+                      showArrowFoward: false,
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
                     DefaultElevatedButton(
-                        text: const Text('Proceed'),
-                        showArrowBack: false,
-                        showArrowFoward: true,
-                        onPressed: () {
-                          Navigator.of(context).pushNamed('/delivery_details');
-                        })
+                      text: const Text('Proceed'),
+                      showArrowBack: false,
+                      showArrowFoward: true,
+                      onPressed: () {
+                        Navigator.of(context).pushNamed('/delivery_details');
+                      },
+                    )
                   ],
                 )
               ],
