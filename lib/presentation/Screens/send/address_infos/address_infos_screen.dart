@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:nextwave/components/app_bar.dart';
 import 'package:nextwave/components/elevated_button.dart';
 import 'package:nextwave/components/text_field.dart';
+import 'package:nextwave/presentation/Screens/send/delivery_details/delivery_details_screen.dart';
+import 'package:nextwave/services/google_map.dart';
 
 class Address extends StatefulWidget {
   const Address({Key? key}) : super(key: key);
@@ -12,6 +15,9 @@ class Address extends StatefulWidget {
 }
 
 class _AddressState extends State<Address> {
+  //
+  String pickupAddress = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,12 +40,18 @@ class _AddressState extends State<Address> {
                   style: TextStyle(fontWeight: FontWeight.w900, fontSize: 22.0),
                 ),
                 const SizedBox(height: 30.0),
-                const InputFormFieldWidget(
+                InputFormFieldWidget(
                   isEmailInput: false,
                   isnumberInput: false,
                   hintText: 'Enter the pickup address',
-                  prefixIcon:
-                      Icon(FontAwesomeIcons.mapMarker, color: Colors.grey),
+                  onChanged: (input) {
+                    //
+                    setState(() {
+                      pickupAddress = input;
+                    });
+                  },
+                  prefixIcon: const Icon(FontAwesomeIcons.mapMarker,
+                      color: Colors.grey),
                 ),
                 const SizedBox(height: 20.0),
                 const InputFormFieldWidget(
@@ -110,7 +122,11 @@ class _AddressState extends State<Address> {
                       showArrowBack: false,
                       showArrowFoward: true,
                       onPressed: () {
-                        Navigator.of(context).pushNamed('/delivery_details');
+                        LocationService().getPlaceId(pickupAddress);
+                        // Get.to(
+                        //   () => DeliveryDetails(
+                        //       incommingPickupAddress: pickupAddress),
+                        // );
                       },
                     )
                   ],

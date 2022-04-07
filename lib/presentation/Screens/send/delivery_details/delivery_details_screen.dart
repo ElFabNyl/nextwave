@@ -10,7 +10,11 @@ import 'package:nextwave/components/delivery_path_details.dart';
 import 'package:nextwave/components/elevated_button.dart';
 
 class DeliveryDetails extends StatefulWidget {
-  const DeliveryDetails({Key? key}) : super(key: key);
+  final String incommingPickupAddress;
+  const DeliveryDetails({
+    Key? key,
+    required this.incommingPickupAddress,
+  }) : super(key: key);
 
   @override
   _DeliveryDetailsState createState() => _DeliveryDetailsState();
@@ -64,7 +68,6 @@ class _DeliveryDetailsState extends State<DeliveryDetails> {
                   width: double.infinity,
                   child: GoogleMap(
                     markers: {_initialPosition, _finalPosition},
-                    
                     polylines: {_polyline},
                     trafficEnabled: true,
                     mapToolbarEnabled: true,
