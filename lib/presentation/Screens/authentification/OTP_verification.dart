@@ -2,8 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:timer_count_down/timer_count_down.dart';
-import 'package:top_snackbar_flutter/custom_snack_bar.dart';
-import 'package:top_snackbar_flutter/top_snack_bar.dart';
+
 
 import 'package:nextwave/components/elevated_button.dart';
 import 'package:nextwave/components/text_field.dart';
@@ -105,7 +104,7 @@ class _OTPVerificationState extends State<OTPVerification> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Countdown(
-                              seconds: 60,
+                              seconds: 90,
                               build: (BuildContext context, double time) =>
                                   Text(time.toString(),
                                       style: const TextStyle(
@@ -113,7 +112,7 @@ class _OTPVerificationState extends State<OTPVerification> {
                                           fontWeight: FontWeight.w900)),
                               interval: const Duration(milliseconds: 100),
                               onFinished: () {
-                                //if the time ends without him filling the input, we tell him that 
+                                //if the time ends without him filling the input, we tell him that
                                 //the time is over and send him back
 
                                 Get.snackbar("NEXTWAVE XPRESS NOTIFICATION",
@@ -159,12 +158,13 @@ class _OTPVerificationState extends State<OTPVerification> {
                                                   incomingPhone: phone)),
                                       (route) => false);
                                 } on FirebaseAuthException catch (e) {
-                                  showTopSnackBar(
-                                    context,
-                                    CustomSnackBar.error(
-                                      message: e.message.toString(),
-                                    ),
-                                  );
+                                  Get.snackbar("NEXTWAVE XPRESS NOTIFICATION",
+                                      e.message.toString(),
+                                      icon: const Icon(Icons.error,
+                                          color: Colors.red),
+                                      snackPosition: SnackPosition.BOTTOM,
+                                      duration: const Duration(seconds: 6));
+
                                   Navigator.pop(context);
                                 }
                               }

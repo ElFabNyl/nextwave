@@ -1,13 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 
 import 'package:nextwave/components/elevated_button.dart';
 import 'package:nextwave/components/text_field.dart';
 import 'package:nextwave/presentation/Screens/authentification/OTP_verification.dart';
-import 'package:top_snackbar_flutter/custom_snack_bar.dart';
-import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class SignUpUserInfos extends StatefulWidget {
   final String incomingEmail;
@@ -171,13 +170,12 @@ class _SignUpUserInfosState extends State<SignUpUserInfos> {
                                       setState(() {
                                         showLoading = false;
                                       });
-                                      showTopSnackBar(
-                                        context,
-                                        CustomSnackBar.error(
-                                          message: verificationFailed.message
-                                              .toString(),
-                                        ),
-                                      );
+                                      Get.snackbar("NEXTWAVE XPRESS NOTIFICATION",
+                                      'the OTP is not correct ! Please try back the process ',
+                                      icon: const Icon(Icons.error,
+                                          color: Colors.red),
+                                      snackPosition: SnackPosition.BOTTOM,
+                                      duration: const Duration(seconds: 8));
                                     },
                                     codeSent: (String verificationId,
                                         int? resendToken) async {

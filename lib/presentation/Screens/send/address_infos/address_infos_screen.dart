@@ -122,7 +122,7 @@ class _AddressState extends State<Address> {
                       showArrowBack: false,
                       showArrowFoward: true,
                       onPressed: () {
-                        LocationService().getPlaceId(pickupAddress);
+                        // LocationService().getPlaceId(pickupAddress);
                         // Get.to(
                         //   () => DeliveryDetails(
                         //       incommingPickupAddress: pickupAddress),
