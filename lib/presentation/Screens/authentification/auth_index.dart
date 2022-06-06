@@ -61,6 +61,7 @@ class _AuthentificationIndexScreenState
                         const SizedBox(height: 16.0),
                         ElevatedButton(
                           onPressed: () async {
+                          // i log the user in here using google.
                             setState(() {
                               showLoading = true;
                             });

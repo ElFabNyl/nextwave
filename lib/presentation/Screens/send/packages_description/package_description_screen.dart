@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:nextwave/components/app_bar.dart';
 import 'package:nextwave/components/elevated_button.dart';
 import 'package:nextwave/components/text_field.dart';
+
+import '../address_infos/address_infos.dart';
 
 class PackageDescription extends StatefulWidget {
   const PackageDescription({Key? key}) : super(key: key);
@@ -105,7 +108,10 @@ class _PackageDescriptionState extends State<PackageDescription> {
                         showArrowBack: false,
                         showArrowFoward: true,
                         onPressed: () {
-                          Navigator.of(context).pushNamed('/address_infos');
+                          //
+                          Get.to(
+                            const Address(),
+                          );
                         })
                   ],
                 )

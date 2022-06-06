@@ -4,7 +4,7 @@ class AppUrl {
     'Accept': 'application/json',
   };
 
-  static const String baseUrl = 'https://nextwaveapi.communedebokito.com/api';
+  static const String baseUrl = 'https://nextwave.pixel.cm/api';
   static const String login = baseUrl + '/login';
   static const String register = baseUrl + '/register';
   static const String forgotPassword = baseUrl + '/forgot-password';

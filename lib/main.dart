@@ -1,13 +1,22 @@
+import 'dart:io';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:nextwave/components/elevated_button.dart';
 import 'package:nextwave/router/app_router.dart';
 import 'package:rate_my_app/rate_my_app.dart';
 
 void main() async {
+  //
   WidgetsFlutterBinding.ensureInitialized();
+  //
+  ByteData data = await PlatformAssetBundle().load('assets/ca/lets-encrypt-r3.pem');
+  SecurityContext.defaultContext.setTrustedCertificatesBytes(data.buffer.asUint8List());
+  //
   await Firebase.initializeApp();
+  //
   runApp(MyApp(
     appRouter: AppRouter(),
   ));

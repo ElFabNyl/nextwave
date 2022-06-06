@@ -56,6 +56,7 @@ class GoogleAuth {
 
     /// before the retrurn we should send the google user infos to the api, collect the registration token and store it in
     /// sharedPreference, to keep him logged in
+    
     await AuthentificationApiService.register(user!.displayName.toString(),
         user.phoneNumber.toString(), user.email.toString(), 'password');
 
