@@ -182,7 +182,18 @@ class AuthentificationApiService {
     }
   }
 
-  /// this function is to connect the user using google
-  ///
+  /// this function is to check if the email exist before performing any action with it
+  /// specially during the login with GOOGLE
 
+  static checkTheExistanceOfEmail(String email) async {
+    var url = Uri.parse(AppUrl.baseUrl + AppUrl.checkEmailExistance);
+    var body = jsonEncode({
+      'email': email,
+    });
+    final http.Response response =
+        await http.post(url, headers: AppUrl.headers, body: body);
+
+    bool statutDeLemail = jsonDecode(response.body)['status'];
+    return statutDeLemail;
+  }
 }

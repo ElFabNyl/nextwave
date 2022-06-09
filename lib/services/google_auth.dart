@@ -47,24 +47,38 @@ class GoogleAuth {
       } catch (e) {
         // handle the error here
         Get.snackbar(
-            "NEXTWAVE XPRESS NOTIFICATION", "an error has occured! try later",
-            icon: const Icon(Icons.error, color: Colors.red),
-            snackPosition: SnackPosition.BOTTOM,
-            duration: const Duration(seconds: 7));
+          "NEXTWAVE XPRESS NOTIFICATION",
+          "an error has occured! try later",
+          icon: const Icon(Icons.error, color: Colors.red),
+          snackPosition: SnackPosition.BOTTOM,
+          duration: const Duration(seconds: 7),
+        );
       }
     }
 
-    /// before the retrurn we should send the google user infos to the api, collect the registration token and store it in
-    /// sharedPreference, to keep him logged in
     
-    await AuthentificationApiService.register(user!.displayName.toString(),
-        user.phoneNumber.toString(), user.email.toString(), 'password');
+    /// we first check if T | for this case the email
+    bool verify = await AuthentificationApiService.checkTheExistanceOfEmail(
+      user!.email.toString(),
+    );
 
-    Get.snackbar("NEXTWAVE XPRESS NOTIFICATION",
+    if (verify) {
+      return user.displayName;
+    } else {
+      /// before the retrurn we should send the google user infos to the api, collect the registration token and store it in
+      /// sharedPreference, to keep him logged in
+
+      await AuthentificationApiService.register(user.displayName.toString(),
+          user.phoneNumber.toString(), user.email.toString(), 'password');
+
+      Get.snackbar(
+        "NEXTWAVE XPRESS NOTIFICATION",
         "your account had been created successfully !",
         icon: const Icon(Icons.check, color: Colors.green),
-        snackPosition: SnackPosition.BOTTOM,
-        duration: const Duration(seconds: 4));
-    return user.displayName;
+        snackPosition: SnackPosition.TOP,
+        duration: const Duration(seconds: 4),
+      );
+      return user.displayName;
+    }
   }
 }
