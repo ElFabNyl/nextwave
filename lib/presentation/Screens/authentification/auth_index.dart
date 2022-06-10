@@ -61,7 +61,7 @@ class _AuthentificationIndexScreenState
                         const SizedBox(height: 16.0),
                         ElevatedButton(
                           onPressed: () async {
-                          // i log the user in here using google.
+                            // i log the user in here using google.
                             setState(() {
                               showLoading = true;
                             });
@@ -177,17 +177,18 @@ class _AuthentificationIndexScreenState
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             TextButton(
-                                onPressed: () {
-                                  //
-                                  Navigator.of(context)
-                                      .pushNamed('/resetPassword1');
-                                },
-                                child: const Text(
-                                  'Forgot password?',
-                                  style: TextStyle(
-                                      color: Color(0xff1960CC),
-                                      fontWeight: FontWeight.w500),
-                                ))
+                              onPressed: () {
+                                //
+                                Navigator.of(context)
+                                    .pushNamed('/resetPassword1');
+                              },
+                              child: const Text(
+                                'Forgot password?',
+                                style: TextStyle(
+                                    color: Color(0xff1960CC),
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            )
                           ],
                         ),
                         const SizedBox(height: 10.0),

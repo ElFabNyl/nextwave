@@ -30,7 +30,8 @@ class HomeWelcomeCard extends StatelessWidget {
               children: [
                 Text(
                   welcomeText,
-                  style: const TextStyle(fontSize: 18.0),
+                  style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.w500),
+                
                 ),
                 userName
               ],
