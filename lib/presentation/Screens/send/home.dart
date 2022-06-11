@@ -13,15 +13,6 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   late Future<String> _name;
-  Future<void> _getName() async {
-    final SharedPreferences prefs = await _prefs;
-    final String name = prefs.getString('name') ?? '';
-    setState(() {
-      _name = prefs.setString('name', name).then((bool success) {
-        return name;
-      });
-    });
-  }
 
   @override
   void initState() {
@@ -30,7 +21,7 @@ class _HomeState extends State<Home> {
     _name = _prefs.then((SharedPreferences prefs) {
       return prefs.getString('name') ?? '';
     });
-  }
+  }     
 
   @override
   Widget build(BuildContext context) {
