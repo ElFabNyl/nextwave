@@ -8,7 +8,6 @@ import 'package:nextwave/services/email_validation_service.dart';
 import 'package:nextwave/services/google_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../no_data.dart';
 
 class AuthentificationIndexScreen extends StatefulWidget {
   const AuthentificationIndexScreen({Key? key}) : super(key: key);
@@ -140,6 +139,7 @@ class _AuthentificationIndexScreenState
                         ),
                         const SizedBox(height: 10.0),
                         InputFormFieldWidget(
+  
                           isnumberInput: false,
                           isEmailInput: false,
                           onChanged: (inputPwd) {
