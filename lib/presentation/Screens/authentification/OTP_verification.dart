@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:timer_count_down/timer_count_down.dart';
 
-
 import 'package:nextwave/components/elevated_button.dart';
 import 'package:nextwave/components/text_field.dart';
 import 'package:nextwave/presentation/Screens/authentification/terms_policy.dart';
@@ -106,10 +105,12 @@ class _OTPVerificationState extends State<OTPVerification> {
                             Countdown(
                               seconds: 90,
                               build: (BuildContext context, double time) =>
-                                  Text(time.toString(),
-                                      style: const TextStyle(
-                                          color: Colors.grey,
-                                          fontWeight: FontWeight.w900)),
+                                  Text(
+                                time.toString(),
+                                style: const TextStyle(
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.w900),
+                              ),
                               interval: const Duration(milliseconds: 100),
                               onFinished: () {
                                 //if the time ends without him filling the input, we tell him that
